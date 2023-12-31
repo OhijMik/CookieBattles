@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b04hjjhb1xuhs"]
+
+[ext_resource type="Texture2D" uid="uid://csgdrsenoglmu" path="res://Images/Background.png" id="1_5npfa"]
+[ext_resource type="Script" path="res://menu.gd" id="1_y01n4"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_y01n4")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(513, 308)
+texture = ExtResource("1_5npfa")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 392.0
+offset_top = 360.0
+offset_right = 632.0
+offset_bottom = 434.0
+theme_override_font_sizes/font_size = 42
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 392.0
+offset_top = 464.0
+offset_right = 632.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 42
+text = "Quit"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
