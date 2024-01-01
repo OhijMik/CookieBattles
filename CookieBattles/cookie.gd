@@ -4,6 +4,7 @@ var chase
 var enemy_list = []
 var speed = 100
 var closest_enemy
+var hp = 3
 
 @onready var anim = get_node("AnimationPlayer")
 
@@ -55,4 +56,5 @@ func _on_range_body_entered(body):
 
 
 func _on_range_body_exited(body):
+	chase = true
 	anim.stop()

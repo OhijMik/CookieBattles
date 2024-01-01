@@ -17,11 +17,18 @@ offset_right = 768.0
 offset_bottom = 488.0
 color = Color(0, 0, 0, 0.54902)
 
-[node name="Cookie" parent="." instance=ExtResource("2_b0mi8")]
+[node name="Cookies" type="Node2D" parent="."]
+
+[node name="Cookie" parent="Cookies" instance=ExtResource("2_b0mi8")]
 position = Vector2(472, 400)
 
-[node name="Milk" parent="." instance=ExtResource("3_od3bl")]
+[node name="Cookie2" parent="Cookies" instance=ExtResource("2_b0mi8")]
+position = Vector2(152, 320)
+
+[node name="Milks" type="Node2D" parent="."]
+
+[node name="Milk" parent="Milks" instance=ExtResource("3_od3bl")]
 position = Vector2(128, 80)
 
-[node name="Milk2" parent="." instance=ExtResource("3_od3bl")]
+[node name="Milk2" parent="Milks" instance=ExtResource("3_od3bl")]
 position = Vector2(688, 184)
