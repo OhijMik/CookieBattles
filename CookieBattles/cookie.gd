@@ -4,6 +4,8 @@ var chase
 var enemy_milk
 var speed = 100
 
+@onready var anim = get_node("AnimationPlayer")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +22,8 @@ func _physics_process(_delta):
 		var direction = (enemy_milk.position - position).normalized()
 		velocity.x = direction.x * speed
 		velocity.y = direction.y * speed
+		look_at(enemy_milk.position)
+		rotate(PI/2)
 		move_and_slide()
 
 
@@ -33,3 +37,4 @@ func _on_enemy_detection_body_entered(body):
 func _on_range_body_entered(body):
 	if body == enemy_milk:
 		chase = false
+		anim.play("Attack")

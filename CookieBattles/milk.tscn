@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dklo0topjogj6"]
 
 [ext_resource type="Script" path="res://milk.gd" id="1_qnakw"]
-[ext_resource type="Texture2D" uid="uid://cchyxl450x8hm" path="res://Images/milk.png" id="1_wt2qr"]
+[ext_resource type="Texture2D" uid="uid://b6gwejcihw6ct" path="res://Images/milk.png" id="1_wt2qr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kv251"]
 radius = 28.0
@@ -19,10 +19,6 @@ script = ExtResource("1_qnakw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kv251")
 
-[node name="Milk" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
-texture = ExtResource("1_wt2qr")
-
 [node name="CookieDetection" type="Area2D" parent="."]
 visible = false
 
@@ -33,6 +29,10 @@ shape = SubResource("CircleShape2D_2k5he")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_061ul")
+
+[node name="Milk" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("1_wt2qr")
 
 [connection signal="body_entered" from="CookieDetection" to="." method="_on_cookie_detection_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
