@@ -24,9 +24,9 @@ func _physics_process(_delta):
 
 
 func _on_cookie_detection_body_entered(body):
+	#print(body)
 	if body.name == "Cookie":
 		chase = true
-		print(body)
 		cookie = body
 
 

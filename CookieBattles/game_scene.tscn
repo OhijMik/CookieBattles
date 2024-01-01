@@ -21,7 +21,7 @@ color = Color(0, 0, 0, 0.54902)
 position = Vector2(472, 400)
 
 [node name="Milk" parent="." instance=ExtResource("3_od3bl")]
-position = Vector2(488, 184)
+position = Vector2(128, 80)
 
 [node name="Milk2" parent="." instance=ExtResource("3_od3bl")]
 position = Vector2(688, 184)
