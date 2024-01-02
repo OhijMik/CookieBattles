@@ -4,7 +4,8 @@ var chase
 var enemy_list = []
 var speed = 100
 var closest_enemy
-var hp = 3
+var hp = 100
+var damage = 34
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var timer = get_node("AttackCooldown")
@@ -17,7 +18,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var health_bar = get_node("HealthBar")
+	health_bar.size.x = hp
 
 
 func _physics_process(_delta):
@@ -63,4 +65,4 @@ func _on_range_body_exited(body):
 
 func _on_attack_cooldown_timeout():
 	anim.play("Attack")
-	closest_enemy.hp -= 1
+	closest_enemy.hp -= damage
