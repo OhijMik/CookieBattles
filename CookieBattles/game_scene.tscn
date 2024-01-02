@@ -20,10 +20,7 @@ color = Color(0, 0, 0, 0.54902)
 [node name="Cookies" type="Node2D" parent="."]
 
 [node name="Cookie" parent="Cookies" instance=ExtResource("2_b0mi8")]
-position = Vector2(472, 400)
-
-[node name="Cookie2" parent="Cookies" instance=ExtResource("2_b0mi8")]
-position = Vector2(152, 320)
+position = Vector2(648, 376)
 
 [node name="Milks" type="Node2D" parent="."]
 
@@ -31,4 +28,7 @@ position = Vector2(152, 320)
 position = Vector2(128, 80)
 
 [node name="Milk2" parent="Milks" instance=ExtResource("3_od3bl")]
-position = Vector2(688, 184)
+position = Vector2(984, 88)
+
+[node name="Cookie" parent="." instance=ExtResource("2_b0mi8")]
+position = Vector2(312, 384)

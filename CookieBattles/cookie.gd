@@ -7,6 +7,7 @@ var closest_enemy
 var hp = 3
 
 @onready var anim = get_node("AnimationPlayer")
+@onready var timer = get_node("AttackCooldown")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +21,15 @@ func _process(delta):
 
 
 func _physics_process(_delta):
+	if closest_enemy != null and closest_enemy.hp <= 0:
+		enemy_list.erase(closest_enemy)
+		if enemy_list.is_empty():
+			get_tree().change_scene_to_file("res://end_scene.tscn")
+		else:
+			closest_enemy.queue_free()
+			chase = true
+			closest_enemy = enemy_list[0]
+	
 	if chase:
 		for i in enemy_list:
 			if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
@@ -40,21 +50,17 @@ func _on_enemy_detection_body_entered(body):
 		closest_enemy = body
 
 
-func _on_enemy_detection_body_exited(body):
-	enemy_list.erase(body)
-	chase = true
-	if enemy_list.is_empty():
-		get_tree().change_scene_to_file("res://end_scene.tscn")
-	else:
-		closest_enemy = enemy_list[0]
-
-
 func _on_range_body_entered(body):
 	if body in enemy_list:
 		chase = false
-		anim.play("Attack")
+		timer.start()
 
 
 func _on_range_body_exited(body):
 	chase = true
-	anim.stop()
+	timer.stop()
+
+
+func _on_attack_cooldown_timeout():
+	anim.play("Attack")
+	closest_enemy.hp -= 1

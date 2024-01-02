@@ -34,7 +34,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_4uswa"]
 resource_name = "Attack"
-loop_mode = 1
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,7 +109,10 @@ libraries = {
 "": SubResource("AnimationLibrary_gdld3")
 }
 
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="CookieDetection" to="." method="_on_cookie_detection_body_entered"]
-[connection signal="body_exited" from="CookieDetection" to="." method="_on_cookie_detection_body_exited"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
