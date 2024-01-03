@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpamlei4esvtg"]
+[gd_scene load_steps=14 format=3 uid="uid://bpamlei4esvtg"]
 
 [ext_resource type="Script" path="res://Cookies/cookie.gd" id="1_bopuu"]
 [ext_resource type="Texture2D" uid="uid://bk1oxj1q372lo" path="res://Images/Cookies/CookieBase.png" id="2_f6qse"]
 [ext_resource type="Texture2D" uid="uid://xngio3hqjyq8" path="res://Images/Cookies/CookieBase2.png" id="3_wtvc5"]
 [ext_resource type="Texture2D" uid="uid://bnju0icr0sj4j" path="res://Images/Cookies/CookieBase3.png" id="4_w0srm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mc2xl"]
+radius = 29.0172
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdtl2"]
 radius = 2.82843
@@ -86,6 +89,9 @@ _data = {
 [node name="Cookie" type="CharacterBody2D"]
 script = ExtResource("1_bopuu")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mc2xl")
+
 [node name="AreaCookie" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCookie"]
@@ -132,6 +138,15 @@ offset_right = 52.0
 offset_bottom = -47.0
 size_flags_horizontal = 3
 color = Color(0.282353, 1, 0.254902, 1)
+
+[node name="HealthText" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -59.0
+offset_right = 11.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "100"
 
 [connection signal="body_entered" from="AreaCookie" to="." method="_on_area_cookie_body_entered"]
 [connection signal="body_exited" from="AreaCookie" to="." method="_on_area_cookie_body_exited"]

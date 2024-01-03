@@ -16,14 +16,15 @@ var body_ref
 var offset : Vector2
 var initialPos : Vector2
 
+# cookie ideas: tank, fighter, range, lifesteal, op
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	chase = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_node("HealthText").text = str(hp)
+	
 	if draggable:
 		if Input.is_action_just_pressed("click"):
 			initialPos = global_position

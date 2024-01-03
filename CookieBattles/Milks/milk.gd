@@ -18,7 +18,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var health_bar = get_node("HealthBar")
+	health_bar.size.x = hp
+	
+	get_node("HealthText").text = str(hp)
 
 
 func _physics_process(_delta):
@@ -44,12 +47,10 @@ func _physics_process(_delta):
 			look_at(closest_cookie.position)
 			rotate(-PI/2)
 			move_and_slide()
-	
-	var health_bar = get_node("HealthBar")
-	health_bar.size.x = hp
 
 
 func _on_cookie_detection_body_entered(body):
+	print(body)
 	if "Cookie" in body.name:
 		chase = true
 		cookie_list.append(body)

@@ -121,6 +121,16 @@ offset_bottom = -47.0
 size_flags_horizontal = 3
 color = Color(0.282353, 1, 0.254902, 1)
 
+[node name="HealthText" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -59.0
+offset_right = 9.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "100
+"
+
 [connection signal="body_entered" from="CookieDetection" to="." method="_on_cookie_detection_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

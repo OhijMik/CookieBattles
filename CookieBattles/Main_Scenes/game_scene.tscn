@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://w5hyqkdawviv"]
+[gd_scene load_steps=7 format=3 uid="uid://w5hyqkdawviv"]
 
+[ext_resource type="Script" path="res://Main_Scenes/game_scene.gd" id="1_67qkg"]
 [ext_resource type="Texture2D" uid="uid://c1gh8s1jlp1e2" path="res://Images/game background.png" id="1_qb1rf"]
 [ext_resource type="PackedScene" uid="uid://c7k44a51dy652" path="res://platform.tscn" id="2_xjsu1"]
 [ext_resource type="PackedScene" uid="uid://bpamlei4esvtg" path="res://Cookies/cookie.tscn" id="3_xbaeo"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://do2enh3iqpr0f" path="res://Shop_Icons/cookie_shop_icon.tscn" id="5_aawq7"]
 
 [node name="GameScene" type="Node2D"]
+script = ExtResource("1_67qkg")
 
 [node name="GameBackground" type="Sprite2D" parent="."]
 scale = Vector2(1.76563, 1.63107)
@@ -102,7 +104,7 @@ position = Vector2(1408, 760)
 position = Vector2(896, 912)
 
 [node name="Cookie2" parent="Cookies" instance=ExtResource("3_xbaeo")]
-position = Vector2(648, 896)
+position = Vector2(1088, 928)
 
 [node name="Milks" type="Node2D" parent="."]
 
@@ -114,3 +116,17 @@ position = Vector2(960, 272)
 
 [node name="CookieShopIcon" parent="." instance=ExtResource("5_aawq7")]
 position = Vector2(552, 912)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TimerText" type="Label" parent="."]
+offset_left = 720.0
+offset_top = 32.0
+offset_right = 1072.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 50
+text = "Prepare: 10"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

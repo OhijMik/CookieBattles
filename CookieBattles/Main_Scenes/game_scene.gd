@@ -1,29 +1,26 @@
 extends Node2D
 
-var cookie = preload("res://Cookies/cookie.tscn")
-var buyable = false
+var timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	timer = get_node("Timer") 
+	timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if buyable and Input.is_action_just_pressed("click"):
-		var cookie_temp = cookie.instantiate()
-		cookie_temp.position = Vector2(0,0)
-		get_node("../Cookies").add_child(cookie_temp)
-		print(cookie_temp.get_path())
-		buyable = false
-		self.queue_free()
+	if not timer.is_stopped():
+		get_node("TimerText").text = str(global.game_state) + ": " + str(round(timer.get_time_left()))
 
 
-func _on_cookie_shop_icon_mouse_entered():
-	get_node("CookieShopIcon").scale = Vector2(1.05, 1.05)
-	buyable = true
-
-
-func _on_cookie_shop_icon_mouse_exited():
-	get_node("CookieShopIcon").scale = Vector2(1, 1)
-	buyable = false
+func _on_timer_timeout():
+	timer.stop()
+	if global.game_state == "prepare":
+		timer.set_wait_time(30)
+		global.game_state = "battle"
+		timer.start()
+	elif global.game_state == "battle":
+		timer.set_wait_time(2)
+		global.game_state = "conclusion"
+		timer.start()

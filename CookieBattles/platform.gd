@@ -14,3 +14,8 @@ func _process(delta):
 		visible = true
 	else:
 		visible = false
+	
+	if global.game_state == "prepare":
+		get_node("CollisionShape2D").disabled = false
+	if global.game_state == "battle":
+		get_node("CollisionShape2D").disabled = true
