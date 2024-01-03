@@ -24,15 +24,18 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if closest_enemy != null and closest_enemy.hp <= 0:
+		print(enemy_list)
 		enemy_list.erase(closest_enemy)
+		print(enemy_list)
 		if enemy_list.is_empty():
+			chase = false
 			get_tree().change_scene_to_file("res://end_scene.tscn")
 		else:
 			closest_enemy.queue_free()
 			chase = true
 			closest_enemy = enemy_list[0]
 	
-	if chase:
+	if chase and closest_enemy != null:
 		for i in enemy_list:
 			if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
 				closest_enemy = i
@@ -47,6 +50,7 @@ func _physics_process(_delta):
 
 func _on_enemy_detection_body_entered(body):
 	if "Milk" in body.name:
+		print(body)
 		chase = true
 		enemy_list.append(body)
 		closest_enemy = body

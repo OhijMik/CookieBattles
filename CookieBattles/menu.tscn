@@ -7,22 +7,23 @@
 script = ExtResource("1_y01n4")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(513, 308)
+position = Vector2(900.5, 503.5)
+scale = Vector2(1.75684, 1.63269)
 texture = ExtResource("1_5npfa")
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 392.0
-offset_top = 360.0
-offset_right = 632.0
-offset_bottom = 434.0
+offset_left = 648.0
+offset_top = 552.0
+offset_right = 1148.0
+offset_bottom = 712.0
 theme_override_font_sizes/font_size = 42
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="."]
-offset_left = 392.0
-offset_top = 464.0
-offset_right = 632.0
-offset_bottom = 538.0
+offset_left = 648.0
+offset_top = 760.0
+offset_right = 1148.0
+offset_bottom = 920.0
 theme_override_font_sizes/font_size = 42
 text = "Quit"
 
