@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dklo0topjogj6"]
+[gd_scene load_steps=11 format=3 uid="uid://dklo0topjogj6"]
 
 [ext_resource type="Script" path="res://Milks/milk.gd" id="1_qnakw"]
 [ext_resource type="Texture2D" uid="uid://htk8ay4e5m8q" path="res://Images/Milks/milk.png" id="2_ihcwn"]
@@ -8,9 +8,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kv251"]
 radius = 28.0
 height = 70.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2k5he"]
-radius = 2560.53
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_061ul"]
 radius = 48.0416
@@ -87,12 +84,6 @@ script = ExtResource("1_qnakw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kv251")
 
-[node name="CookieDetection" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CookieDetection"]
-shape = SubResource("CircleShape2D_2k5he")
-
 [node name="Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
@@ -131,7 +122,6 @@ theme_override_font_sizes/font_size = 10
 text = "100
 "
 
-[connection signal="body_entered" from="CookieDetection" to="." method="_on_cookie_detection_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

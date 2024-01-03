@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpamlei4esvtg"]
+[gd_scene load_steps=13 format=3 uid="uid://bpamlei4esvtg"]
 
 [ext_resource type="Script" path="res://Cookies/cookie.gd" id="1_bopuu"]
 [ext_resource type="Texture2D" uid="uid://bk1oxj1q372lo" path="res://Images/Cookies/CookieBase.png" id="2_f6qse"]
@@ -13,9 +13,6 @@ radius = 2.82843
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dt4d"]
 radius = 35.3553
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hj8cp"]
-radius = 2560.53
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8nlu"]
 radius = 58.0
@@ -101,14 +98,8 @@ shape = SubResource("CircleShape2D_gdtl2")
 [node name="DraggableArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableArea"]
-position = Vector2(3, -1)
+position = Vector2(8, 1)
 shape = SubResource("CircleShape2D_3dt4d")
-
-[node name="EnemyDetection" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
-shape = SubResource("CircleShape2D_hj8cp")
 
 [node name="Range" type="Area2D" parent="."]
 visible = false
@@ -153,7 +144,6 @@ text = "100"
 [connection signal="mouse_exited" from="AreaCookie" to="." method="_on_area_cookie_mouse_exited"]
 [connection signal="mouse_entered" from="DraggableArea" to="." method="_on_area_cookie_mouse_entered"]
 [connection signal="mouse_exited" from="DraggableArea" to="." method="_on_area_cookie_mouse_exited"]
-[connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_detection_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

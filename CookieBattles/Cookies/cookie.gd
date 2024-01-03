@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 var chase
-var enemy_list = []
 var speed = 100
 var closest_enemy
 var hp = 100
@@ -20,6 +19,7 @@ var initialPos : Vector2
 
 func _ready():
 	chase = false
+	global.cookie_list.append(self)
 
 
 func _process(delta):
@@ -43,18 +43,22 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
+		if closest_enemy == null:
+			closest_enemy = global.milk_list[0]
+			chase = true
+		
 		if closest_enemy != null and closest_enemy.hp <= 0:
-			enemy_list.erase(closest_enemy)
-			if enemy_list.is_empty():
+			global.milk_list.erase(closest_enemy)
+			if global.milk_list.is_empty():
 				chase = false
 				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
 			else:
 				closest_enemy.queue_free()
 				chase = true
-				closest_enemy = enemy_list[0]
+				closest_enemy = global.milk_list[0]
 		
 		if chase and closest_enemy != null:
-			for i in enemy_list:
+			for i in global.milk_list:
 				if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
 					closest_enemy = i
 
@@ -69,15 +73,8 @@ func _physics_process(_delta):
 	health_bar.size.x = hp
 
 
-func _on_enemy_detection_body_entered(body):
-	if "Milk" in body.name:
-		chase = true
-		enemy_list.append(body)
-		closest_enemy = body
-
-
 func _on_range_body_entered(body):
-	if body in enemy_list:
+	if body in global.milk_list:
 		chase = false
 		timer.start()
 

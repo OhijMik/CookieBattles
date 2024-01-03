@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var chase
 var speed = 100
-var cookie_list = []
 var closest_cookie
 var hp = 100
 var damage = 33
@@ -14,6 +13,7 @@ var damage = 33
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	chase = false
+	global.milk_list.append(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,18 +26,22 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
+		if closest_cookie == null:
+			closest_cookie = global.cookie_list[0]
+			chase = true
+		
 		if closest_cookie != null and closest_cookie.hp <= 0:
-			cookie_list.erase(closest_cookie)
-			if cookie_list.is_empty():
+			global.cookie_list.erase(closest_cookie)
+			if global.cookie_list.is_empty():
 				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
 			else:
 				closest_cookie.queue_free()
 				chase = true
-				closest_cookie = cookie_list[0]
+				closest_cookie = global.cookie_list[0]
 			
 		
 		if chase:
-			for i in cookie_list:
+			for i in global.cookie_list:
 				if position.distance_to(i.position) <= position.distance_to(closest_cookie.position):
 					closest_cookie = i
 			
@@ -49,16 +53,8 @@ func _physics_process(_delta):
 			move_and_slide()
 
 
-func _on_cookie_detection_body_entered(body):
-	print(body)
-	if "Cookie" in body.name:
-		chase = true
-		cookie_list.append(body)
-		closest_cookie = body
-
-
 func _on_range_body_entered(body):
-	if body in cookie_list:
+	if body in global.cookie_list:
 		chase = false
 		timer.start()
 
