@@ -12,13 +12,87 @@ scale = Vector2(1.76563, 1.63107)
 texture = ExtResource("1_p2swm")
 centered = false
 
-[node name="Platform" parent="." instance=ExtResource("4_grw3f")]
-position = Vector2(560, 632)
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(432, 504)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(568, 504)
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(696, 504)
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(832, 504)
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(960, 504)
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1096, 504)
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1224, 504)
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1360, 504)
+
+[node name="Platform9" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(432, 624)
+
+[node name="Platform10" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(568, 624)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(696, 624)
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(832, 624)
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(960, 624)
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1096, 624)
+
+[node name="Platform15" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1224, 624)
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1360, 624)
+
+[node name="Platform17" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(432, 744)
+
+[node name="Platform18" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(568, 744)
+
+[node name="Platform19" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(696, 744)
+
+[node name="Platform20" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(832, 744)
+
+[node name="Platform21" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(960, 744)
+
+[node name="Platform22" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1096, 744)
+
+[node name="Platform23" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1224, 744)
+
+[node name="Platform24" parent="Platforms" instance=ExtResource("4_grw3f")]
+position = Vector2(1360, 744)
 
 [node name="Cookies" type="Node2D" parent="."]
 
 [node name="Cookie" parent="Cookies" instance=ExtResource("2_b0mi8")]
-position = Vector2(1248, 624)
+position = Vector2(896, 912)
+
+[node name="Cookie2" parent="Cookies" instance=ExtResource("2_b0mi8")]
+position = Vector2(648, 896)
 
 [node name="Milks" type="Node2D" parent="."]
 

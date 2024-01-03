@@ -34,7 +34,8 @@ func _process(delta):
 		elif Input.is_action_just_released("click"):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
-			if is_inside_dropable:
+			if is_inside_dropable and not body_ref.is_occupied:
+				body_ref.is_occupied = true
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
@@ -42,9 +43,7 @@ func _process(delta):
 func _physics_process(_delta):
 	if global.game_state == "battle":
 		if closest_enemy != null and closest_enemy.hp <= 0:
-			print(enemy_list)
 			enemy_list.erase(closest_enemy)
-			print(enemy_list)
 			if enemy_list.is_empty():
 				chase = false
 				get_tree().change_scene_to_file("res://end_scene.tscn")
@@ -71,7 +70,6 @@ func _physics_process(_delta):
 
 func _on_enemy_detection_body_entered(body):
 	if "Milk" in body.name:
-		print(body)
 		chase = true
 		enemy_list.append(body)
 		closest_enemy = body
@@ -112,6 +110,8 @@ func _on_area_cookie_body_entered(body):
 	if body.is_in_group("dropable"):
 		is_inside_dropable = true
 		body.modulate = Color(Color.BLACK, 1)
+		if body_ref != null:
+			body_ref.is_occupied = false
 		body_ref = body
 
 

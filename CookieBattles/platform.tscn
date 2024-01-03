@@ -6,7 +6,13 @@
 size = Vector2(128, 128)
 
 [node name="Platform" type="StaticBody2D" groups=["dropable"]]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_kxsgy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_axg8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_axg8b")
