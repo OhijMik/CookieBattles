@@ -12,6 +12,9 @@ scale = Vector2(1.76563, 1.63107)
 texture = ExtResource("1_p2swm")
 centered = false
 
+[node name="Platform" parent="." instance=ExtResource("4_grw3f")]
+position = Vector2(560, 632)
+
 [node name="Cookies" type="Node2D" parent="."]
 
 [node name="Cookie" parent="Cookies" instance=ExtResource("2_b0mi8")]
@@ -24,9 +27,3 @@ position = Vector2(480, 296)
 
 [node name="Milk2" parent="Milks" instance=ExtResource("3_od3bl")]
 position = Vector2(1232, 280)
-
-[node name="Cookie" parent="." instance=ExtResource("2_b0mi8")]
-position = Vector2(616, 560)
-
-[node name="Platform" parent="." instance=ExtResource("4_grw3f")]
-position = Vector2(560, 632)

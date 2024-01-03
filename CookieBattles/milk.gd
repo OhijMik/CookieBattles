@@ -18,32 +18,35 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var health_bar = get_node("HealthBar")
-	health_bar.size.x = hp
+	pass
 
 
 func _physics_process(_delta):
-	if closest_cookie != null and closest_cookie.hp <= 0:
-		cookie_list.erase(closest_cookie)
-		if cookie_list.is_empty():
-			get_tree().change_scene_to_file("res://end_scene.tscn")
-		else:
-			closest_cookie.queue_free()
-			chase = true
-			closest_cookie = cookie_list[0]
+	if global.game_state == "battle":
+		if closest_cookie != null and closest_cookie.hp <= 0:
+			cookie_list.erase(closest_cookie)
+			if cookie_list.is_empty():
+				get_tree().change_scene_to_file("res://end_scene.tscn")
+			else:
+				closest_cookie.queue_free()
+				chase = true
+				closest_cookie = cookie_list[0]
+			
 		
+		if chase:
+			for i in cookie_list:
+				if position.distance_to(i.position) <= position.distance_to(closest_cookie.position):
+					closest_cookie = i
+			
+			var direction = (closest_cookie.position - position).normalized()
+			velocity.x = direction.x * speed
+			velocity.y = direction.y * speed
+			look_at(closest_cookie.position)
+			rotate(-PI/2)
+			move_and_slide()
 	
-	if chase:
-		for i in cookie_list:
-			if position.distance_to(i.position) <= position.distance_to(closest_cookie.position):
-				closest_cookie = i
-		
-		var direction = (closest_cookie.position - position).normalized()
-		velocity.x = direction.x * speed
-		velocity.y = direction.y * speed
-		look_at(closest_cookie.position)
-		rotate(-PI/2)
-		move_and_slide()
+	var health_bar = get_node("HealthBar")
+	health_bar.size.x = hp
 
 
 func _on_cookie_detection_body_entered(body):

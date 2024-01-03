@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://xngio3hqjyq8" path="res://Images/Cookies/CookieBase2.png" id="3_wtvc5"]
 [ext_resource type="Texture2D" uid="uid://bnju0icr0sj4j" path="res://Images/Cookies/CookieBase3.png" id="4_w0srm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0lrq1"]
-radius = 30.0666
+[sub_resource type="CircleShape2D" id="CircleShape2D_3dt4d"]
+radius = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hj8cp"]
 radius = 2560.53
@@ -83,8 +83,11 @@ _data = {
 [node name="Cookie" type="CharacterBody2D"]
 script = ExtResource("1_bopuu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0lrq1")
+[node name="AreaCookie" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCookie"]
+position = Vector2(3, -1)
+shape = SubResource("CircleShape2D_3dt4d")
 
 [node name="EnemyDetection" type="Area2D" parent="."]
 visible = false
@@ -93,6 +96,7 @@ visible = false
 shape = SubResource("CircleShape2D_hj8cp")
 
 [node name="Range" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_b8nlu")
@@ -100,6 +104,7 @@ shape = SubResource("CircleShape2D_b8nlu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_e0x1s")
 animation = &"Attack"
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
@@ -119,6 +124,10 @@ offset_bottom = -47.0
 size_flags_horizontal = 3
 color = Color(0.282353, 1, 0.254902, 1)
 
+[connection signal="body_entered" from="AreaCookie" to="." method="_on_area_cookie_body_entered"]
+[connection signal="body_exited" from="AreaCookie" to="." method="_on_area_cookie_body_exited"]
+[connection signal="mouse_entered" from="AreaCookie" to="." method="_on_area_cookie_mouse_entered"]
+[connection signal="mouse_exited" from="AreaCookie" to="." method="_on_area_cookie_mouse_exited"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_detection_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
