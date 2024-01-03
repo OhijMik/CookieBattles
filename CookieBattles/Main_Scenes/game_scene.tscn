@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://w5hyqkdawviv"]
+
+[ext_resource type="Texture2D" uid="uid://c1gh8s1jlp1e2" path="res://Images/game background.png" id="1_qb1rf"]
+[ext_resource type="PackedScene" uid="uid://c7k44a51dy652" path="res://platform.tscn" id="2_xjsu1"]
+[ext_resource type="PackedScene" uid="uid://bpamlei4esvtg" path="res://Cookies/cookie.tscn" id="3_xbaeo"]
+[ext_resource type="PackedScene" uid="uid://dklo0topjogj6" path="res://Milks/milk.tscn" id="4_lvx8l"]
+[ext_resource type="PackedScene" uid="uid://do2enh3iqpr0f" path="res://Shop_Icons/cookie_shop_icon.tscn" id="5_aawq7"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="GameBackground" type="Sprite2D" parent="."]
+scale = Vector2(1.76563, 1.63107)
+texture = ExtResource("1_qb1rf")
+centered = false
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(384, 504)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(512, 504)
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(640, 504)
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(768, 504)
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(896, 504)
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1024, 504)
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1152, 504)
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1280, 504)
+
+[node name="Platform9" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1408, 504)
+
+[node name="Platform10" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(384, 632)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(512, 632)
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(640, 632)
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(768, 632)
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(896, 632)
+
+[node name="Platform15" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1024, 632)
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1152, 632)
+
+[node name="Platform17" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1280, 632)
+
+[node name="Platform18" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1408, 632)
+
+[node name="Platform19" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(384, 760)
+
+[node name="Platform20" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(512, 760)
+
+[node name="Platform21" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(640, 760)
+
+[node name="Platform22" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(768, 760)
+
+[node name="Platform23" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(896, 760)
+
+[node name="Platform24" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1024, 760)
+
+[node name="Platform25" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1152, 760)
+
+[node name="Platform26" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1280, 760)
+
+[node name="Platform27" parent="Platforms" instance=ExtResource("2_xjsu1")]
+position = Vector2(1408, 760)
+
+[node name="Cookies" type="Node2D" parent="."]
+
+[node name="Cookie" parent="Cookies" instance=ExtResource("3_xbaeo")]
+position = Vector2(896, 912)
+
+[node name="Cookie2" parent="Cookies" instance=ExtResource("3_xbaeo")]
+position = Vector2(648, 896)
+
+[node name="Milks" type="Node2D" parent="."]
+
+[node name="Milk" parent="Milks" instance=ExtResource("4_lvx8l")]
+position = Vector2(432, 256)
+
+[node name="Milk2" parent="Milks" instance=ExtResource("4_lvx8l")]
+position = Vector2(960, 272)
+
+[node name="CookieShopIcon" parent="." instance=ExtResource("5_aawq7")]
+position = Vector2(552, 912)

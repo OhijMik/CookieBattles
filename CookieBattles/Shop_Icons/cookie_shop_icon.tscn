@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://do2enh3iqpr0f"]
+
+[ext_resource type="Texture2D" uid="uid://dqxwflh7nnjf2" path="res://Shop_Icons/CookieShopIcon.png" id="1_08ard"]
+[ext_resource type="Script" path="res://Shop_Icons/cookie_shop_icon.gd" id="1_n8elb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdola"]
+size = Vector2(128, 128)
+
+[node name="CookieShopIcon" type="StaticBody2D"]
+script = ExtResource("1_n8elb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wdola")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_08ard")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

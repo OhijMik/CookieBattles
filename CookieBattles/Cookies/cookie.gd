@@ -46,7 +46,7 @@ func _physics_process(_delta):
 			enemy_list.erase(closest_enemy)
 			if enemy_list.is_empty():
 				chase = false
-				get_tree().change_scene_to_file("res://end_scene.tscn")
+				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
 			else:
 				closest_enemy.queue_free()
 				chase = true

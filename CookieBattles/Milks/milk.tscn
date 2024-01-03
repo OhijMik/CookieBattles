@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dklo0topjogj6"]
 
-[ext_resource type="Script" path="res://milk.gd" id="1_qnakw"]
+[ext_resource type="Script" path="res://Milks/milk.gd" id="1_qnakw"]
 [ext_resource type="Texture2D" uid="uid://htk8ay4e5m8q" path="res://Images/Milks/milk.png" id="2_ihcwn"]
 [ext_resource type="Texture2D" uid="uid://cbd75fcy6c8sc" path="res://Images/Milks/milk2.png" id="3_u865n"]
 [ext_resource type="Texture2D" uid="uid://vvavktk4nqcd" path="res://Images/Milks/milk3.png" id="4_aunan"]

@@ -26,7 +26,7 @@ func _physics_process(_delta):
 		if closest_cookie != null and closest_cookie.hp <= 0:
 			cookie_list.erase(closest_cookie)
 			if cookie_list.is_empty():
-				get_tree().change_scene_to_file("res://end_scene.tscn")
+				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
 			else:
 				closest_cookie.queue_free()
 				chase = true
