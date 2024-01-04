@@ -22,8 +22,6 @@ func _process(delta):
 			for y in range(504, 760, 128):
 				for x in range(384, 1408, 128):
 					for cookie in global.cookie_list:
-						print(cookie.position)
-						print(Vector2(x,y))
 						if cookie.position == Vector2(x,y):
 							loop_break = false
 							break

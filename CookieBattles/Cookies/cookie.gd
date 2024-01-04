@@ -93,19 +93,19 @@ func _on_attack_cooldown_timeout():
 
 # Drag and dropping the cookie
 func _on_area_cookie_mouse_entered():
-	if not global.is_dragging:
+	if not global.is_dragging and global.game_state == "prepare":
 		draggable = true
 		scale = Vector2(1.05, 1.05)
 
 
 func _on_area_cookie_mouse_exited():
-	if not global.is_dragging:
+	if not global.is_dragging and global.game_state == "prepare":
 		draggable = false
 		scale = Vector2(1, 1)
 
 
 func _on_area_cookie_body_entered(body):
-	if body.is_in_group("dropable"):
+	if body.is_in_group("dropable") and global.game_state == "prepare":
 		is_inside_dropable = true
 		body.modulate = Color(Color.BLACK, 1)
 		if body_ref != null:
@@ -114,6 +114,6 @@ func _on_area_cookie_body_entered(body):
 
 
 func _on_area_cookie_body_exited(body):
-	if body.is_in_group("dropable"):
+	if body.is_in_group("dropable") and global.game_state == "prepare":
 		is_inside_dropable = false
 		body.modulate = Color(Color.BLACK, 0.7)

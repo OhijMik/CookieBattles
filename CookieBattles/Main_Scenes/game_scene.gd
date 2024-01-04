@@ -4,14 +4,17 @@ var timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer = get_node("Timer") 
+	timer = get_node("Timer/Timer")
 	timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_node("Gold").text = "Gold: " + str(global.gold)
+	
+	# Timer
 	if not timer.is_stopped():
-		get_node("TimerText").text = str(global.game_state) + ": " + str(round(timer.get_time_left()))
+		get_node("Timer/TimerText").text = str(global.game_state) + ": " + str(round(timer.get_time_left()))
 
 
 func _on_timer_timeout():
@@ -24,3 +27,8 @@ func _on_timer_timeout():
 		timer.set_wait_time(2)
 		global.game_state = "conclusion"
 		timer.start()
+
+
+func _on_reroll_button_pressed():
+	if global.game_state == "prepare" and global.gold >= 2:
+		global.gold -= 2
