@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdj3p0kwmukng"]
+
+[ext_resource type="Script" path="res://Cookies/tank_cookie.gd" id="1_e13kg"]
+[ext_resource type="Texture2D" uid="uid://b7e72wwley13s" path="res://Images/Cookies/TankCookie/TankCookieBase.png" id="2_y77gd"]
+[ext_resource type="Texture2D" uid="uid://5j386bxhf4te" path="res://Images/Cookies/TankCookie/TankCookieBase2.png" id="3_fv0te"]
+[ext_resource type="Texture2D" uid="uid://1odhi8au4d3p" path="res://Images/Cookies/TankCookie/TankCookieBase3.png" id="4_d82lx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mc2xl"]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdtl2"]
+radius = 2.82843
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3dt4d"]
+radius = 35.3553
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8nlu"]
+radius = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0x1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y77gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fv0te")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d82lx")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_se0t2"]
+resource_name = "Attack"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_pf1ju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gbimf"]
+_data = {
+"Attack": SubResource("Animation_se0t2"),
+"RESET": SubResource("Animation_pf1ju")
+}
+
+[node name="Cookie" type="CharacterBody2D"]
+script = ExtResource("1_e13kg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mc2xl")
+
+[node name="AreaCookie" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCookie"]
+position = Vector2(3, -1)
+shape = SubResource("CircleShape2D_gdtl2")
+
+[node name="DraggableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableArea"]
+position = Vector2(8, 1)
+shape = SubResource("CircleShape2D_3dt4d")
+
+[node name="Range" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_b8nlu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e0x1s")
+animation = &"Attack"
+frame_progress = 0.100522
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_gbimf")
+}
+movie_quit_on_finish = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="HealthBar" type="ColorRect" parent="."]
+layout_direction = 2
+offset_left = -48.0
+offset_top = -57.0
+offset_right = 52.0
+offset_bottom = -47.0
+size_flags_horizontal = 3
+color = Color(0.282353, 1, 0.254902, 1)
+
+[node name="HealthText" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -59.0
+offset_right = 11.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "100"
+
+[connection signal="body_entered" from="AreaCookie" to="." method="_on_area_cookie_body_entered"]
+[connection signal="body_exited" from="AreaCookie" to="." method="_on_area_cookie_body_exited"]
+[connection signal="mouse_exited" from="AreaCookie" to="." method="_on_area_cookie_mouse_exited"]
+[connection signal="mouse_entered" from="DraggableArea" to="." method="_on_area_cookie_mouse_entered"]
+[connection signal="mouse_exited" from="DraggableArea" to="." method="_on_area_cookie_mouse_exited"]
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

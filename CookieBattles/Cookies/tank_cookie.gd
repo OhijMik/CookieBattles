@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 var chase
-var speed = 100
+var speed = 70
 var closest_enemy
-var hp = 100
-var damage = 34
+var hp = 300
+var damage = 10
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var timer = get_node("AttackCooldown")
@@ -70,7 +70,7 @@ func _physics_process(_delta):
 			move_and_slide()
 	
 	var health_bar = get_node("HealthBar")
-	health_bar.size.x = hp
+	health_bar.size.x = 100 * (hp/300.0)
 
 
 func _on_range_body_entered(body):

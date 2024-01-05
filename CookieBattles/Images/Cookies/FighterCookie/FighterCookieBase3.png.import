@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xngio3hqjyq8"
-path="res://.godot/imported/CookieBase2.png-4b32bacf0e24e770d347c60174b7646d.ctex"
+uid="uid://dujpb3y7rkeyt"
+path="res://.godot/imported/FighterCookieBase3.png-5f5e3225408e4f726a76c01f9d0ec85b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Cookies/CookieBase2.png"
-dest_files=["res://.godot/imported/CookieBase2.png-4b32bacf0e24e770d347c60174b7646d.ctex"]
+source_file="res://Images/Cookies/FighterCookie/FighterCookieBase3.png"
+dest_files=["res://.godot/imported/FighterCookieBase3.png-5f5e3225408e4f726a76c01f9d0ec85b.ctex"]
 
 [params]
 

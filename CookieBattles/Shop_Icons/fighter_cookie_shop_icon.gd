@@ -1,6 +1,6 @@
 extends Node2D
 
-var cookie = preload("res://Cookies/cookie.tscn")
+var cookie = preload("res://Cookies/fighter_cookie.tscn")
 var buyable = false
 var loop_break = false
 

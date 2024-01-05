@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://do2enh3iqpr0f"]
 
-[ext_resource type="Script" path="res://Shop_Icons/cookie_shop_icon.gd" id="1_n8elb"]
+[ext_resource type="Script" path="res://Shop_Icons/fighter_cookie_shop_icon.gd" id="1_n8elb"]
 [ext_resource type="Texture2D" uid="uid://dqxwflh7nnjf2" path="res://Images/Shop_Icon_Images/CookieShopIcon.png" id="2_fbv05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdola"]
