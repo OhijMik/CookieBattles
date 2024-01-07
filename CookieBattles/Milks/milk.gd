@@ -4,7 +4,7 @@ var chase
 var speed = 100
 var closest_cookie
 var hp = 100
-var damage = 100 #33
+var damage = 33
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var timer = get_node("AttackCooldown")
@@ -13,24 +13,23 @@ var damage = 100 #33
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	chase = false
-	global.milk_list.append(self)
+	#global.milk_list.append(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var health_bar = get_node("HealthBar")
 	health_bar.size.x = hp
-	
 	get_node("HealthText").text = str(hp)
 
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
-		if closest_cookie == null:
-			closest_cookie = global.cookie_list[0]
-			chase = true
+		if global.cookie_list == []:
+			get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
+			global.game_state = "prepare"
 		
-		if closest_cookie != null and closest_cookie.hp <= 0:
+		elif closest_cookie != null and closest_cookie.hp <= 0:
 			global.cookie_list.erase(closest_cookie)
 			if global.cookie_list.is_empty():
 				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
@@ -39,12 +38,14 @@ func _physics_process(_delta):
 				chase = true
 				closest_cookie = global.cookie_list[0]
 			
-		
-		if chase:
+		elif closest_cookie == null:
+			closest_cookie = global.cookie_list[0]
+			chase = true
+
+		if chase and closest_cookie != null:
 			for i in global.cookie_list:
 				if position.distance_to(i.position) <= position.distance_to(closest_cookie.position):
 					closest_cookie = i
-			
 			var direction = (closest_cookie.position - position).normalized()
 			velocity.x = direction.x * speed
 			velocity.y = direction.y * speed

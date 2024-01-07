@@ -49,11 +49,8 @@ func _physics_process(_delta):
 		
 		if closest_enemy != null and closest_enemy.hp <= 0:
 			global.milk_list.erase(closest_enemy)
-			if global.milk_list.is_empty():
-				chase = false
-				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
-			else:
-				closest_enemy.queue_free()
+			closest_enemy.queue_free()
+			if not global.milk_list.is_empty():
 				chase = true
 				closest_enemy = global.milk_list[0]
 		

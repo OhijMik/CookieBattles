@@ -26,7 +26,7 @@ func _ready():
 func _process(delta):
 	get_node("HealthText").text = str(hp)
 	
-	if draggable:
+	if draggable and global.game_state == "prepare":
 		if Input.is_action_just_pressed("click"):
 			initialPos = global_position
 			offset = get_global_mouse_position() - global_position
@@ -50,11 +50,8 @@ func _physics_process(_delta):
 		
 		if closest_enemy != null and closest_enemy.hp <= 0:
 			global.milk_list.erase(closest_enemy)
-			if global.milk_list.is_empty():
-				chase = false
-				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
-			else:
-				closest_enemy.queue_free()
+			closest_enemy.queue_free()
+			if not global.milk_list.is_empty():
 				chase = true
 				closest_enemy = global.milk_list[0]
 		
@@ -88,7 +85,6 @@ func _on_range_body_exited(body):
 func _on_attack_cooldown_timeout():
 	anim.play("Attack")
 	closest_enemy.hp -= damage
-
 
 
 
