@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqxwflh7nnjf2"
-path="res://.godot/imported/CookieShopIcon.png-3d8cd41c27b24b9484091c36c6576fbb.ctex"
+uid="uid://cl3ykdrc83wfx"
+path="res://.godot/imported/TankCookieShopIcon.png-5dbd203889f1abd3c03c6f848749036d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Shop_Icon_Images/CookieShopIcon.png"
-dest_files=["res://.godot/imported/CookieShopIcon.png-3d8cd41c27b24b9484091c36c6576fbb.ctex"]
+source_file="res://Images/Shop_Icon_Images/TankCookieShopIcon.png"
+dest_files=["res://.godot/imported/TankCookieShopIcon.png-5dbd203889f1abd3c03c6f848749036d.ctex"]
 
 [params]
 

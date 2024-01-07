@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://bvnwvtn7lnv35"]
+[gd_scene load_steps=3 format=3 uid="uid://bvnwvtn7lnv35"]
+
+[ext_resource type="Script" path="res://Main_Scenes/end_scene.gd" id="1_erv8w"]
+[ext_resource type="Texture2D" uid="uid://c1gh8s1jlp1e2" path="res://Images/game background.png" id="2_5kawl"]
 
 [node name="EndScene" type="Node2D"]
+script = ExtResource("1_erv8w")
+
+[node name="GameBackground" type="Sprite2D" parent="."]
+position = Vector2(900, 500)
+scale = Vector2(1.75781, 1.61812)
+texture = ExtResource("2_5kawl")
+
+[node name="GameOverLabel" type="Label" parent="."]
+offset_left = 624.0
+offset_top = 112.0
+offset_right = 1169.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+
+[node name="Round" type="Label" parent="."]
+offset_left = 576.0
+offset_top = 344.0
+offset_right = 1216.0
+offset_bottom = 432.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "You survived until round 1"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 680.0
+offset_top = 736.0
+offset_right = 1120.0
+offset_bottom = 840.0
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="MainMenuButton" type="Button" parent="."]
+offset_left = 680.0
+offset_top = 560.0
+offset_right = 1120.0
+offset_bottom = 664.0
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

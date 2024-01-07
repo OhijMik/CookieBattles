@@ -4,7 +4,7 @@ var chase
 var speed = 100
 var closest_cookie
 var hp = 100
-var damage = 33
+var damage = 100 #33
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var timer = get_node("AttackCooldown")

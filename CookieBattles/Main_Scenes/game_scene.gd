@@ -11,6 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_node("Gold").text = "Gold: " + str(global.gold)
+	get_node("Round").text = "Round " + str(global.round)
 	
 	# Timer
 	if not timer.is_stopped():
