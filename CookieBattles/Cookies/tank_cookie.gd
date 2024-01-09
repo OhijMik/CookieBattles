@@ -16,6 +16,8 @@ var body_ref
 var offset : Vector2
 var initial_pos : Vector2
 
+var price = 2
+
 # cookie ideas: tank, fighter, range, lifesteal, op
 
 func _ready():
@@ -41,6 +43,7 @@ func _process(delta):
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
 				tween.tween_property(self, "global_position", initial_pos, 0.2).set_ease(Tween.EASE_OUT)
+
 
 func _physics_process(_delta):
 	if global.game_state == "battle":

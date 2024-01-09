@@ -16,6 +16,8 @@ var body_ref
 var offset : Vector2
 var initial_pos : Vector2
 
+var price = 1
+
 # cookie ideas: tank, fighter, range, lifesteal, op
 
 func _ready():
@@ -38,6 +40,7 @@ func _process(delta):
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and not body_ref.is_occupied:
 				body_ref.is_occupied = true
+				initial_pos = position
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
 				tween.tween_property(self, "global_position", initial_pos, 0.2).set_ease(Tween.EASE_OUT)
@@ -88,7 +91,6 @@ func _on_attack_cooldown_timeout():
 	if global.game_state == "battle":
 		anim.play("Attack")
 		closest_enemy.hp -= damage
-
 
 
 # Drag and dropping the cookie

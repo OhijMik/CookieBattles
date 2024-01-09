@@ -36,8 +36,9 @@ func _on_timer_timeout():
 	if global.game_state == "prepare":
 		global.game_state = "battle"
 		for i in global.cookie_list:
-			saved_cookies[i] = i.position
 			i.position = i.initial_pos
+			saved_cookies[i] = i.position
+		
 		timer.start(25)
 	elif global.game_state == "battle":
 		global.game_state = "conclusion"
