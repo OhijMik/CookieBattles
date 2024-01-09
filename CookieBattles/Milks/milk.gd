@@ -34,7 +34,8 @@ func _physics_process(_delta):
 			if global.cookie_list.is_empty():
 				get_tree().change_scene_to_file("res://Main_Scenes/end_scene.tscn")
 			else:
-				closest_cookie.queue_free()
+				closest_cookie.get_node("CollisionShape2D").set_disabled(true)
+				closest_cookie.visible = false
 				chase = true
 				closest_cookie = global.cookie_list[0]
 			
@@ -55,16 +56,18 @@ func _physics_process(_delta):
 
 
 func _on_range_body_entered(body):
-	if body in global.cookie_list:
+	if body in global.cookie_list and global.game_state == "battle":
 		chase = false
 		timer.start()
 
 
 func _on_range_body_exited(body):
-	chase = true
-	timer.stop()
+	if global.game_state == "battle":
+		chase = true
+		timer.stop()
 
 
 func _on_attack_cooldown_timeout():
-	anim.play("Attack")
-	closest_cookie.hp -= damage
+	if global.game_state == "battle":
+		anim.play("Attack")
+		closest_cookie.hp -= damage

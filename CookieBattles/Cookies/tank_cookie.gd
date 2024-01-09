@@ -4,6 +4,7 @@ var chase
 var speed = 70
 var closest_enemy
 var hp = 300
+var initial_hp = float(hp)
 var damage = 10
 
 @onready var anim = get_node("AnimationPlayer")
@@ -13,7 +14,7 @@ var draggable = false
 var is_inside_dropable = false
 var body_ref
 var offset : Vector2
-var initialPos : Vector2
+var initial_pos : Vector2
 
 # cookie ideas: tank, fighter, range, lifesteal, op
 
@@ -27,7 +28,7 @@ func _process(delta):
 	
 	if draggable:
 		if Input.is_action_just_pressed("click"):
-			initialPos = global_position
+			initial_pos = global_position
 			offset = get_global_mouse_position() - global_position
 			global.is_dragging = true
 		if Input.is_action_pressed("click"):
@@ -39,7 +40,7 @@ func _process(delta):
 				body_ref.is_occupied = true
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
-				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
+				tween.tween_property(self, "global_position", initial_pos, 0.2).set_ease(Tween.EASE_OUT)
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
@@ -71,19 +72,21 @@ func _physics_process(_delta):
 
 
 func _on_range_body_entered(body):
-	if body in global.milk_list:
+	if body in global.milk_list and global.game_state == "battle":
 		chase = false
 		timer.start()
 
 
 func _on_range_body_exited(body):
-	chase = true
-	timer.stop()
+	if global.game_state == "battle":
+		chase = true
+		timer.stop()
 
 
 func _on_attack_cooldown_timeout():
-	anim.play("Attack")
-	closest_enemy.hp -= damage
+	if global.game_state == "battle":
+		anim.play("Attack")
+		closest_enemy.hp -= damage
 
 
 
