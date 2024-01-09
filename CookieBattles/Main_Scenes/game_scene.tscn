@@ -137,7 +137,7 @@ position = Vector2(760, 912)
 [node name="Timer" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="Timer"]
-wait_time = 10.0
+wait_time = 5.0
 
 [node name="TimerText" type="Label" parent="Timer"]
 offset_left = 720.0

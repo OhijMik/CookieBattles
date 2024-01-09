@@ -28,6 +28,7 @@ func _ready():
 func _process(delta):
 	get_node("HealthText").text = str(hp)
 	
+	# When dragging the cookie
 	if draggable and global.game_state == "prepare":
 		if Input.is_action_just_pressed("click"):
 			initial_pos = global_position
@@ -48,10 +49,12 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
+		# if there is no closest enemy
 		if closest_enemy == null:
 			closest_enemy = global.milk_list[0]
 			chase = true
 		
+		# if the enemy is dead
 		if closest_enemy != null and closest_enemy.hp <= 0:
 			global.milk_list.erase(closest_enemy)
 			closest_enemy.queue_free()
@@ -59,6 +62,7 @@ func _physics_process(_delta):
 				chase = true
 				closest_enemy = global.milk_list[0]
 		
+		# when chasing
 		if chase and closest_enemy != null:
 			for i in global.milk_list:
 				if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
@@ -110,7 +114,7 @@ func _on_area_cookie_body_entered(body):
 	if body.is_in_group("dropable") and global.game_state == "prepare":
 		is_inside_dropable = true
 		body.modulate = Color(Color.BLACK, 1)
-		if body_ref != null:
+		if body_ref != null and not body_ref.is_occupied:
 			body_ref.is_occupied = false
 		body_ref = body
 

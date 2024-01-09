@@ -35,10 +35,14 @@ func _process(delta):
 func _on_timer_timeout():
 	if global.game_state == "prepare":
 		global.game_state = "battle"
+		# Save the initial position of the cookies
 		for i in global.cookie_list:
 			i.position = i.initial_pos
 			saved_cookies[i] = i.position
 		
+		# Disable all platforms
+		for i in get_tree().get_nodes_in_group("dropable"):
+			i.get_node("CollisionShape2D").disabled = true
 		timer.start(25)
 	elif global.game_state == "battle":
 		global.game_state = "conclusion"
@@ -51,6 +55,9 @@ func _on_timer_timeout():
 
 
 func scene_reset():
+	global.gold += 2
+	
+	# Resets the cookies
 	for i in saved_cookies:
 		i.position = saved_cookies[i]
 		i.get_node("CollisionShape2D").set_disabled(false)
@@ -58,8 +65,8 @@ func scene_reset():
 		i.hp = i.initial_hp
 		i.rotation = 0
 	
+	# Spawns the milk enemies
 	if global.round == 2:
-		global.gold += 2
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(730, 250), Vector2(1000, 250)]
 		for i in milk_pos:
 			var milk_temp = milk.instantiate()
@@ -69,5 +76,5 @@ func scene_reset():
 
 
 func _on_reroll_button_pressed():
-	if global.game_state == "prepare" and global.gold >= 2:
+	if global.gold >= 2:
 		global.gold -= 2
