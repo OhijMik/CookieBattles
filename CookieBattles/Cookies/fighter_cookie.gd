@@ -43,7 +43,6 @@ func _process(delta):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and not body_ref.is_occupied:
-				print(prev_body_ref)
 				body_ref.is_occupied = true
 				prev_body_ref.is_occupied = false
 				prev_body_ref = body_ref
@@ -55,6 +54,7 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
+
 		# if there is no closest enemy
 		if closest_enemy == null:
 			closest_enemy = global.milk_list[0]

@@ -9,7 +9,6 @@ var tank_cookie_shop_icon = preload("res://Shop_Icons/tank_cookie_shop_icon.tscn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scene_reset()
 	timer = get_node("Timer/Timer")
 	timer.start()
 	
@@ -60,14 +59,6 @@ func _on_timer_timeout():
 func scene_reset():
 	global.gold += 2
 	
-	# Resets the cookies
-	for i in saved_cookies:
-		i.position = saved_cookies[i]
-		i.get_node("CollisionShape2D").set_disabled(false)
-		i.visible = true
-		i.hp = i.initial_hp
-		i.rotation = 0
-	
 	# Spawns the milk enemies
 	if global.round == 2:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(730, 250), Vector2(1000, 250)]
@@ -108,6 +99,14 @@ func scene_reset():
 			global.milk_list.append(milk_temp)
 	elif global.round == 6:
 		get_tree().change_scene_to_file("res://Main_Scenes/win_scene.tscn")
+	
+	# Resets the cookies
+	for i in saved_cookies:
+		i.position = saved_cookies[i]
+		i.get_node("CollisionShape2D").set_disabled(false)
+		i.visible = true
+		i.hp = i.initial_hp
+		i.rotation = 0
 
 
 func _on_reroll_button_pressed():
