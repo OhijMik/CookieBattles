@@ -6,5 +6,5 @@ var game_state = "prepare"		# prepare, battle, conclusion
 var cookie_list = []
 var milk_list = []
 
-var gold = 20
+var gold = 100
 var round = 1

@@ -27,6 +27,8 @@ func _ready():
 
 func _process(delta):
 	get_node("HealthText").text = str(hp)
+	var health_bar = get_node("HealthBar")
+	health_bar.size.x = 100 * (hp/initial_hp)
 	
 	# When dragging the cookie
 	if draggable and global.game_state == "prepare":
@@ -74,9 +76,6 @@ func _physics_process(_delta):
 			look_at(closest_enemy.position)
 			rotate(PI/2)
 			move_and_slide()
-	
-	var health_bar = get_node("HealthBar")
-	health_bar.size.x = 100 * (hp/initial_hp)
 
 
 func _on_range_body_entered(body):
