@@ -15,7 +15,7 @@ radius = 2.82843
 radius = 35.3553
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8nlu"]
-radius = 58.0
+radius = 64.4981
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e0x1s"]
 animations = [{
@@ -102,7 +102,6 @@ position = Vector2(8, 1)
 shape = SubResource("CircleShape2D_3dt4d")
 
 [node name="Range" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_b8nlu")

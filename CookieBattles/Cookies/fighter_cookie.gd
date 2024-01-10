@@ -13,6 +13,7 @@ var damage = 34
 var draggable = false
 var is_inside_dropable = false
 var body_ref
+var prev_body_ref
 var offset : Vector2
 var initial_pos : Vector2
 
@@ -42,7 +43,10 @@ func _process(delta):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and not body_ref.is_occupied:
+				print(prev_body_ref)
 				body_ref.is_occupied = true
+				prev_body_ref.is_occupied = false
+				prev_body_ref = body_ref
 				initial_pos = position
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
@@ -96,6 +100,8 @@ func _on_attack_cooldown_timeout():
 		closest_enemy.hp -= damage
 
 
+
+
 # Drag and dropping the cookie
 func _on_area_cookie_mouse_entered():
 	if not global.is_dragging and global.game_state == "prepare":
@@ -116,6 +122,9 @@ func _on_area_cookie_body_entered(body):
 		if body_ref != null and not body_ref.is_occupied:
 			body_ref.is_occupied = false
 		body_ref = body
+		
+		if prev_body_ref == null:
+			prev_body_ref = body_ref
 
 
 func _on_area_cookie_body_exited(body):

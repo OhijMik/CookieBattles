@@ -10,7 +10,7 @@ radius = 28.0
 height = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_061ul"]
-radius = 48.0416
+radius = 56.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8rga7"]
 animations = [{
