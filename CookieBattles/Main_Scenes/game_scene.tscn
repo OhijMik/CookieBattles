@@ -26,7 +26,7 @@ text = "Reroll"
 [node name="ColorRect" type="ColorRect" parent="."]
 light_mask = 2
 visibility_layer = 2
-offset_left = 464.0
+offset_left = 456.0
 offset_top = 824.0
 offset_right = 1336.0
 offset_bottom = 1000.0
@@ -123,16 +123,19 @@ position = Vector2(1408, 760)
 [node name="Shop" type="Node2D" parent="."]
 
 [node name="FighterCookieShopIcon" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(584, 912)
+position = Vector2(560, 912)
 
 [node name="FighterCookieShopIcon2" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(936, 912)
+position = Vector2(896, 912)
 
 [node name="FighterCookieShopIcon3" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(1104, 912)
+position = Vector2(1064, 912)
 
 [node name="TankCookieShopIcon" parent="Shop" instance=ExtResource("7_hrsl7")]
-position = Vector2(760, 912)
+position = Vector2(728, 912)
+
+[node name="FighterCookieShopIcon4" parent="Shop" instance=ExtResource("5_aawq7")]
+position = Vector2(1232, 912)
 
 [node name="Timer" type="Node2D" parent="."]
 

@@ -76,7 +76,7 @@ func _physics_process(_delta):
 			move_and_slide()
 	
 	var health_bar = get_node("HealthBar")
-	health_bar.size.x = 100 * (hp/300.0)
+	health_bar.size.x = 100 * (hp/initial_hp)
 
 
 func _on_range_body_entered(body):

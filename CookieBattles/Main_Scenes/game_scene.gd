@@ -4,9 +4,12 @@ var timer
 var milk = preload("res://Milks/milk.tscn")
 var saved_cookies = {}
 
+var fighter_cookie_shop_icon = preload("res://Shop_Icons/fighter_cookie_shop_icon.tscn")
+var tank_cookie_shop_icon = preload("res://Shop_Icons/tank_cookie_shop_icon.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scene_reset()
 	timer = get_node("Timer/Timer")
 	timer.start()
 	
@@ -73,8 +76,58 @@ func scene_reset():
 			milk_temp.position = i
 			get_node("Milks").add_child(milk_temp)
 			global.milk_list.append(milk_temp)
+	elif global.round == 3:
+		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(630, 250), 
+						Vector2(1100, 250), Vector2(830, 200), Vector2(900, 200)]
+		for i in milk_pos:
+			var milk_temp = milk.instantiate()
+			milk_temp.position = i
+			milk_temp.damage = 35
+			get_node("Milks").add_child(milk_temp)
+			global.milk_list.append(milk_temp)
+	elif global.round == 4:
+		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(630, 250), 
+						Vector2(1100, 250), Vector2(830, 200), Vector2(900, 200)]
+		for i in milk_pos:
+			var milk_temp = milk.instantiate()
+			milk_temp.position = i
+			milk_temp.hp = 200
+			milk_temp.damage = 35
+			milk_temp.initial_hp = float(milk_temp.hp)
+			get_node("Milks").add_child(milk_temp)
+			global.milk_list.append(milk_temp)
+	elif global.round == 5:
+		var milk_pos = [Vector2(900, 200)]
+		for i in milk_pos:
+			var milk_temp = milk.instantiate()
+			milk_temp.position = i
+			milk_temp.hp = 1000
+			milk_temp.damage = 100
+			milk_temp.initial_hp = float(milk_temp.hp)
+			get_node("Milks").add_child(milk_temp)
+			global.milk_list.append(milk_temp)
+	elif global.round == 6:
+		get_tree().change_scene_to_file("res://Main_Scenes/win_scene.tscn")
 
 
 func _on_reroll_button_pressed():
 	if global.gold >= 2:
 		global.gold -= 2
+		
+		# Removing the current shop
+		for n in get_node("Shop").get_children():
+			get_node("Shop").remove_child(n)
+			n.queue_free()
+		
+		# Spawning the icons
+		for x in range(560, 1233, 168):
+			var rng = RandomNumberGenerator.new()
+			var randInt = rng.randi_range(0, 1)
+			if randInt == 0:
+				var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
+				fighter_cookie_temp.position = Vector2(x,912)
+				get_node("Shop").add_child(fighter_cookie_temp)
+			elif randInt == 1:
+				var tank_cookie_temp = tank_cookie_shop_icon.instantiate()
+				tank_cookie_temp.position = Vector2(x,912)
+				get_node("Shop").add_child(tank_cookie_temp)

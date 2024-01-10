@@ -15,8 +15,5 @@ func _process(delta):
 	else:
 		visible = false
 	
-	if is_occupied:
-		print(self)
-	
 	if global.game_state == "prepare":
 		get_node("CollisionShape2D").disabled = false

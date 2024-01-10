@@ -4,6 +4,7 @@ var chase
 var speed = 100
 var closest_cookie
 var hp = 100
+var initial_hp = float(hp)
 var damage = 33
 
 @onready var anim = get_node("AnimationPlayer")
@@ -19,7 +20,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var health_bar = get_node("HealthBar")
-	health_bar.size.x = hp
+	health_bar.size.x = 100 * (hp/initial_hp)
 	get_node("HealthText").text = str(hp)
 
 
