@@ -16,7 +16,7 @@ func _process(delta):
 	if buyable and Input.is_action_just_pressed("click") and global.game_state == "prepare":
 		var cookie_temp = cookie.instantiate()
 		
-		if global.cookie_list == []:
+		if global.cookie_list == [] or not get_node("../../Platforms/Platform").is_occupied:
 			global.gold -= price
 			get_node("../../Platforms/Platform").is_occupied = true
 			cookie_temp.position = Vector2(384,504)
