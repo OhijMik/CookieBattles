@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhq4471gtybrf"]
+
+[ext_resource type="Script" path="res://Shop_Icons/vampire_cookie_shop_icon.gd" id="1_tt3j3"]
+[ext_resource type="Texture2D" uid="uid://dvlwdg4ehgjbn" path="res://Images/Shop_Icon_Images/VampireCookieShopIcon.png" id="2_ck6ap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdola"]
+size = Vector2(128, 128)
+
+[node name="TankCookieShopIcon" type="StaticBody2D"]
+script = ExtResource("1_tt3j3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wdola")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ck6ap")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
