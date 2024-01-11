@@ -6,6 +6,8 @@ var saved_cookies = {}
 
 var fighter_cookie_shop_icon = preload("res://Shop_Icons/fighter_cookie_shop_icon.tscn")
 var tank_cookie_shop_icon = preload("res://Shop_Icons/tank_cookie_shop_icon.tscn")
+var vampire_cookie_shop_icon = preload("res://Shop_Icons/vampire_cookie_shop_icon.tscn")
+var puff_cookie_shop_icon = preload("res://Shop_Icons/puff_cookie_shop_icon.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -121,7 +123,7 @@ func _on_reroll_button_pressed():
 		# Spawning the icons
 		for x in range(560, 1233, 168):
 			var rng = RandomNumberGenerator.new()
-			var randInt = rng.randi_range(0, 1)
+			var randInt = rng.randi_range(0, 3)
 			if randInt == 0:
 				var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
 				fighter_cookie_temp.position = Vector2(x,912)
@@ -130,3 +132,11 @@ func _on_reroll_button_pressed():
 				var tank_cookie_temp = tank_cookie_shop_icon.instantiate()
 				tank_cookie_temp.position = Vector2(x,912)
 				get_node("Shop").add_child(tank_cookie_temp)
+			elif randInt == 2:
+				var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
+				vampire_cookie_temp.position = Vector2(x,912)
+				get_node("Shop").add_child(vampire_cookie_temp)
+			elif randInt == 3:
+				var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
+				puff_cookie_temp.position = Vector2(x,912)
+				get_node("Shop").add_child(puff_cookie_temp)
