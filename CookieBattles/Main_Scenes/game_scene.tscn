@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://w5hyqkdawviv"]
+[gd_scene load_steps=7 format=3 uid="uid://w5hyqkdawviv"]
 
 [ext_resource type="Script" path="res://Main_Scenes/game_scene.gd" id="1_67qkg"]
 [ext_resource type="Texture2D" uid="uid://c1gh8s1jlp1e2" path="res://Images/game background.png" id="1_qb1rf"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://do2enh3iqpr0f" path="res://Shop_Icons/fighter_cookie_shop_icon.tscn" id="5_aawq7"]
 [ext_resource type="PackedScene" uid="uid://c7b43vmksp4l7" path="res://Platforms/sell_platform.tscn" id="6_2ambm"]
 [ext_resource type="PackedScene" uid="uid://5m8ie03oskpf" path="res://Shop_Icons/tank_cookie_shop_icon.tscn" id="7_hrsl7"]
-[ext_resource type="PackedScene" uid="uid://bhq4471gtybrf" path="res://Shop_Icons/vampire_cookie_shop_icon.tscn" id="8_qetbb"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_67qkg")
@@ -137,9 +136,6 @@ position = Vector2(728, 912)
 
 [node name="FighterCookieShopIcon4" parent="Shop" instance=ExtResource("5_aawq7")]
 position = Vector2(1232, 912)
-
-[node name="TankCookieShopIcon2" parent="Shop" instance=ExtResource("8_qetbb")]
-position = Vector2(1592, 744)
 
 [node name="Timer" type="Node2D" parent="."]
 
