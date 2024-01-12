@@ -15,7 +15,7 @@ func _process(delta):
 		global.cookie_list.erase(selling_cookie)
 		selling_cookie.queue_free()
 		sellable = false
-		global.gold += selling_cookie.price
+		global.gold += selling_cookie.price - 1
 
 
 func _on_area_2d_body_entered(body):

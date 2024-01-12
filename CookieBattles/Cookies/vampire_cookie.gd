@@ -62,6 +62,7 @@ func _physics_process(_delta):
 		
 		# If the enemy is dead
 		if closest_enemy != null and closest_enemy.hp <= 0:
+			global.gold += 1
 			global.milk_list.erase(closest_enemy)
 			closest_enemy.queue_free()
 			if not global.milk_list.is_empty():
@@ -85,9 +86,10 @@ func _physics_process(_delta):
 func _on_range_body_entered(body):
 	if body in global.milk_list and global.game_state == "battle":
 		chase = false
-		anim.play("Attack")
-		closest_enemy.hp -= damage
-		timer.start()
+		if timer.is_stopped():
+			anim.play("Attack")
+			closest_enemy.hp -= damage
+			timer.start()
 
 
 func _on_range_body_exited(body):

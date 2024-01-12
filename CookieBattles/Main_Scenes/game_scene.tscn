@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://w5hyqkdawviv"]
+[gd_scene load_steps=5 format=3 uid="uid://w5hyqkdawviv"]
 
 [ext_resource type="Script" path="res://Main_Scenes/game_scene.gd" id="1_67qkg"]
 [ext_resource type="Texture2D" uid="uid://c1gh8s1jlp1e2" path="res://Images/game background.png" id="1_qb1rf"]
 [ext_resource type="PackedScene" uid="uid://c7k44a51dy652" path="res://Platforms/platform.tscn" id="2_xjsu1"]
-[ext_resource type="PackedScene" uid="uid://do2enh3iqpr0f" path="res://Shop_Icons/fighter_cookie_shop_icon.tscn" id="5_aawq7"]
 [ext_resource type="PackedScene" uid="uid://c7b43vmksp4l7" path="res://Platforms/sell_platform.tscn" id="6_2ambm"]
-[ext_resource type="PackedScene" uid="uid://bfapq5khb3tpo" path="res://Cookies/range_cookie.tscn" id="7_bpfpv"]
-[ext_resource type="PackedScene" uid="uid://5m8ie03oskpf" path="res://Shop_Icons/tank_cookie_shop_icon.tscn" id="7_hrsl7"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_67qkg")
@@ -117,29 +114,14 @@ position = Vector2(1280, 760)
 [node name="Platform27" parent="Platforms" instance=ExtResource("2_xjsu1")]
 position = Vector2(1408, 760)
 
-[node name="Cookies" type="Node2D" parent="."]
+[node name="Sell_Platform" parent="Platforms" instance=ExtResource("6_2ambm")]
+position = Vector2(1472, 912)
 
-[node name="RangeCookie" parent="Cookies" instance=ExtResource("7_bpfpv")]
-position = Vector2(1272, 504)
+[node name="Cookies" type="Node2D" parent="."]
 
 [node name="Milks" type="Node2D" parent="."]
 
 [node name="Shop" type="Node2D" parent="."]
-
-[node name="FighterCookieShopIcon" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(560, 912)
-
-[node name="FighterCookieShopIcon2" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(896, 912)
-
-[node name="FighterCookieShopIcon3" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(1064, 912)
-
-[node name="TankCookieShopIcon" parent="Shop" instance=ExtResource("7_hrsl7")]
-position = Vector2(728, 912)
-
-[node name="FighterCookieShopIcon4" parent="Shop" instance=ExtResource("5_aawq7")]
-position = Vector2(1232, 912)
 
 [node name="Timer" type="Node2D" parent="."]
 
@@ -174,9 +156,6 @@ offset_bottom = 184.0
 theme_override_font_sizes/font_size = 50
 text = "Round 0"
 horizontal_alignment = 1
-
-[node name="Sell_Platform" parent="." instance=ExtResource("6_2ambm")]
-position = Vector2(1472, 912)
 
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="timeout" from="Timer/Timer" to="." method="_on_timer_timeout"]

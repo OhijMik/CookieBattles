@@ -58,6 +58,8 @@ func _physics_process(_delta):
 func _on_range_body_entered(body):
 	if body in global.cookie_list and global.game_state == "battle":
 		chase = false
+		anim.play("Attack")
+		closest_cookie.hp -= damage
 		timer.start()
 
 

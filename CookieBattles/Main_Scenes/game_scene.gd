@@ -8,11 +8,13 @@ var fighter_cookie_shop_icon = preload("res://Shop_Icons/fighter_cookie_shop_ico
 var tank_cookie_shop_icon = preload("res://Shop_Icons/tank_cookie_shop_icon.tscn")
 var vampire_cookie_shop_icon = preload("res://Shop_Icons/vampire_cookie_shop_icon.tscn")
 var puff_cookie_shop_icon = preload("res://Shop_Icons/puff_cookie_shop_icon.tscn")
+var range_cookie_shop_icon = preload("res://Shop_Icons/range_cookie_shop_icon.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = get_node("Timer/Timer")
 	timer.start()
+	_random_shop_generator()
 	
 	var milk_pos = [Vector2(430, 250), Vector2(1300, 250)]
 	for i in milk_pos:
@@ -59,8 +61,6 @@ func _on_timer_timeout():
 
 
 func scene_reset():
-	global.gold += 2
-	
 	# Spawns the milk enemies
 	if global.round == 2:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(730, 250), Vector2(1000, 250)]
@@ -120,23 +120,32 @@ func _on_reroll_button_pressed():
 			get_node("Shop").remove_child(n)
 			n.queue_free()
 		
-		# Spawning the icons
-		for x in range(560, 1233, 168):
-			var rng = RandomNumberGenerator.new()
-			var randInt = rng.randi_range(0, 3)
-			if randInt == 0:
-				var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
-				fighter_cookie_temp.position = Vector2(x,912)
-				get_node("Shop").add_child(fighter_cookie_temp)
-			elif randInt == 1:
-				var tank_cookie_temp = tank_cookie_shop_icon.instantiate()
-				tank_cookie_temp.position = Vector2(x,912)
-				get_node("Shop").add_child(tank_cookie_temp)
-			elif randInt == 2:
-				var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
-				vampire_cookie_temp.position = Vector2(x,912)
-				get_node("Shop").add_child(vampire_cookie_temp)
-			elif randInt == 3:
-				var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
-				puff_cookie_temp.position = Vector2(x,912)
-				get_node("Shop").add_child(puff_cookie_temp)
+		_random_shop_generator()
+		
+	
+	
+func _random_shop_generator():
+	# Spawning the icons
+	for x in range(560, 1233, 168):
+		var rng = RandomNumberGenerator.new()
+		var randInt = rng.randi_range(0, 4)
+		if randInt == 0:
+			var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
+			fighter_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(fighter_cookie_temp)
+		elif randInt == 1:
+			var tank_cookie_temp = tank_cookie_shop_icon.instantiate()
+			tank_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(tank_cookie_temp)
+		elif randInt == 2:
+			var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
+			vampire_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(vampire_cookie_temp)
+		elif randInt == 3:
+			var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
+			puff_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(puff_cookie_temp)
+		elif randInt == 4:
+			var range_cookie_temp = range_cookie_shop_icon.instantiate()
+			range_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(range_cookie_temp)

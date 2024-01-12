@@ -63,6 +63,7 @@ func _physics_process(_delta):
 		
 		# if the enemy is dead
 		if closest_enemy != null and closest_enemy.hp <= 0:
+			global.gold += 1
 			global.milk_list.erase(closest_enemy)
 			closest_enemy.queue_free()
 			if not global.milk_list.is_empty():
@@ -104,7 +105,8 @@ func _on_attack_cooldown_timeout():
 	if global.game_state == "battle":
 		anim.play("Attack")
 		for milk in area_attackable_milk_list:
-			milk.hp -= damage
+			if milk != null:
+				milk.hp -= damage
 
 
 
