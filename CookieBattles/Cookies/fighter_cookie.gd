@@ -19,7 +19,6 @@ var initial_pos : Vector2
 
 var price = 1
 
-# cookie ideas: tank, fighter, range, lifesteal, op
 
 func _ready():
 	chase = false
@@ -85,11 +84,13 @@ func _physics_process(_delta):
 func _on_range_body_entered(body):
 	if body in global.milk_list and global.game_state == "battle":
 		chase = false
+		anim.play("Attack")
+		closest_enemy.hp -= damage
 		timer.start()
 
 
 func _on_range_body_exited(body):
-	if global.game_state == "battle":
+	if body in global.milk_list and global.game_state == "battle":
 		chase = true
 		timer.stop()
 

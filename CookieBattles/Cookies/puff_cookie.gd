@@ -88,11 +88,13 @@ func _on_range_body_entered(body):
 		chase = false
 		area_attackable_milk_list.append(body)
 		if timer.is_stopped():
+			anim.play("Attack")
+			closest_enemy.hp -= damage
 			timer.start()
 
 
 func _on_range_body_exited(body):
-	if global.game_state == "battle":
+	if body in global.milk_list and global.game_state == "battle":
 		chase = true
 		area_attackable_milk_list.erase(body)
 		timer.stop()

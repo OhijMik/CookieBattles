@@ -14,7 +14,6 @@ var damage = 33
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	chase = false
-	#global.milk_list.append(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +42,7 @@ func _physics_process(_delta):
 		elif closest_cookie == null:
 			closest_cookie = global.cookie_list[0]
 			chase = true
-
+		
 		if chase and closest_cookie != null:
 			for i in global.cookie_list:
 				if position.distance_to(i.position) <= position.distance_to(closest_cookie.position):
@@ -63,7 +62,7 @@ func _on_range_body_entered(body):
 
 
 func _on_range_body_exited(body):
-	if global.game_state == "battle":
+	if body in global.cookie_list and global.game_state == "battle":
 		chase = true
 		timer.stop()
 
