@@ -70,6 +70,16 @@ func _physics_process(_delta):
 				chase = true
 				closest_enemy = global.milk_list[0]
 		
+		var enemies_in_range = get_node("Range").get_overlapping_bodies()
+
+		if closest_enemy in enemies_in_range:
+			_on_range_body_entered(closest_enemy)
+			chase = false
+			look_at(closest_enemy.position)
+			rotate(PI/2)
+		else:
+			chase = true
+		
 		# when chasing
 		if chase and closest_enemy != null:
 			for i in global.milk_list:

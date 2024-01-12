@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqtn8yrwcrsq2"]
+
+[ext_resource type="Script" path="res://Main_Scenes/help.gd" id="1_upeja"]
+[ext_resource type="Texture2D" uid="uid://bcr7yas85x1aq" path="res://Images/Help background.png" id="2_0rh4w"]
+
+[node name="Help" type="Node2D"]
+script = ExtResource("1_upeja")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(900.5, 503.5)
+scale = Vector2(1.75684, 1.63269)
+texture = ExtResource("2_0rh4w")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 672.0
+offset_top = 808.0
+offset_right = 1128.0
+offset_bottom = 936.0
+theme_override_font_sizes/font_size = 42
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 280.0
+offset_right = 1615.0
+offset_bottom = 741.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Cookie Battles is an auto battler where you buy 
+Cookies from the shop with your gold to fight the
+Enemy milk.
+Press the reroll button to refresh the shop.
+Drag your cookies to the trash to sell them for one gold
+Less than the original price.
+During prepare state, buy your cookies and drag it on your board to 
+position them for the fight (tip: place your tank in front of ranged cookies).
+Have Fun!!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

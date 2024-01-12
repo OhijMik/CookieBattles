@@ -13,11 +13,20 @@ texture = ExtResource("2_4k86a")
 
 [node name="StartButton" type="Button" parent="."]
 offset_left = 648.0
-offset_top = 552.0
+offset_top = 376.0
 offset_right = 1148.0
-offset_bottom = 712.0
+offset_bottom = 536.0
 theme_override_font_sizes/font_size = 42
 text = "Start"
+
+[node name="HelpButton" type="Button" parent="."]
+offset_left = 648.0
+offset_top = 568.0
+offset_right = 1148.0
+offset_bottom = 728.0
+theme_override_font_sizes/font_size = 42
+text = "Help
+"
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = 648.0
@@ -28,4 +37,5 @@ theme_override_font_sizes/font_size = 42
 text = "Quit"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
