@@ -53,6 +53,9 @@ func _physics_process(_delta):
 			look_at(closest_cookie.position)
 			rotate(-PI/2)
 			move_and_slide()
+		
+		if hp <= 0:
+			global.gold += 1
 
 
 func _on_range_body_entered(body):
