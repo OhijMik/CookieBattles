@@ -54,12 +54,16 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
-		# if the enemy is dead
-		if closest_enemy == null:
-			if not global.milk_list.is_empty():
-				chase = true
-				closest_enemy = global.milk_list[0]
-				
+		milk_in_range = get_node("Range").get_overlapping_bodies()
+		
+		closest_enemy = global.milk_list[0]
+		for i in global.milk_list:
+			if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
+				closest_enemy = i
+
+		if milk_in_range.is_empty():
+			chase = true
+			cooldown.stop()
 		
 		if not milk_in_range.is_empty():
 			chase = false
@@ -73,30 +77,12 @@ func _physics_process(_delta):
 		
 		# when chasing
 		if chase and closest_enemy != null:
-			for i in global.milk_list:
-				if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
-					closest_enemy = i
-
 			var direction = (closest_enemy.position - position).normalized()
 			velocity.x = direction.x * speed
 			velocity.y = direction.y * speed
 			look_at(closest_enemy.position)
 			rotate(PI/2)
 			move_and_slide()
-
-
-func _on_range_body_entered(body):
-	if body in global.milk_list and global.game_state == "battle":
-		chase = false
-		milk_in_range.append(body)
-
-
-func _on_range_body_exited(body):
-	if "projectile" not in body.name and global.game_state == "battle":
-		milk_in_range.pop_at(0)
-		if milk_in_range.is_empty():
-			chase = true
-			cooldown.stop()
 
 
 func _on_attack_cooldown_timeout():

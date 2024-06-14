@@ -5,11 +5,11 @@ var speed = 100
 var closest_enemy
 var hp = 200
 var initial_hp = float(hp)
-var damage = 100
+var damage = 60
 var area_attackable_milk_list = []
 
 @onready var anim = get_node("AnimationPlayer")
-@onready var timer = get_node("AttackCooldown")
+@onready var cooldown = get_node("AttackCooldown")
 
 var draggable = false
 var is_inside_dropable = false
@@ -17,6 +17,7 @@ var body_ref
 var prev_body_ref
 var offset : Vector2
 var initial_pos : Vector2
+var milk_in_range = []
 
 var price = 6
 
@@ -55,36 +56,31 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
+		milk_in_range = get_node("Range").get_overlapping_bodies()
+		
+		closest_enemy = global.milk_list[0]
+		for i in global.milk_list:
+			if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
+				closest_enemy = i
 
-		# if there is no closest enemy
-		if closest_enemy == null:
-			closest_enemy = global.milk_list[0]
+		if milk_in_range.is_empty():
 			chase = true
+			cooldown.stop()
 		
-		# if the enemy is dead
-		if closest_enemy != null and closest_enemy.hp <= 0:
-			global.milk_list.erase(closest_enemy)
-			closest_enemy.queue_free()
-			if not global.milk_list.is_empty():
-				chase = true
-				closest_enemy = global.milk_list[0]
-		
-		var enemies_in_range = get_node("Range").get_overlapping_bodies()
-
-		if closest_enemy in enemies_in_range:
-			_on_range_body_entered(closest_enemy)
+		if not milk_in_range.is_empty():
 			chase = false
+			var direction = (closest_enemy.position - position).normalized()
 			look_at(closest_enemy.position)
 			rotate(PI/2)
-		else:
-			chase = true
+			if cooldown.is_stopped():
+				anim.play("Attack")
+				for milk in milk_in_range:
+					if milk != null:
+						milk.hp -= damage
+				cooldown.start()
 		
 		# when chasing
 		if chase and closest_enemy != null:
-			for i in global.milk_list:
-				if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
-					closest_enemy = i
-
 			var direction = (closest_enemy.position - position).normalized()
 			velocity.x = direction.x * speed
 			velocity.y = direction.y * speed
@@ -93,27 +89,10 @@ func _physics_process(_delta):
 			move_and_slide()
 
 
-func _on_range_body_entered(body):
-	if body in global.milk_list and global.game_state == "battle":
-		chase = false
-		area_attackable_milk_list.append(body)
-		if timer.is_stopped():
-			anim.play("Attack")
-			closest_enemy.hp -= damage
-			timer.start()
-
-
-func _on_range_body_exited(body):
-	if body in global.milk_list and global.game_state == "battle":
-		chase = true
-		area_attackable_milk_list.erase(body)
-		timer.stop()
-
-
 func _on_attack_cooldown_timeout():
 	if global.game_state == "battle":
 		anim.play("Attack")
-		for milk in area_attackable_milk_list:
+		for milk in milk_in_range:
 			if milk != null:
 				milk.hp -= damage
 

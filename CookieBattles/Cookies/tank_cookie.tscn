@@ -152,6 +152,4 @@ text = "100"
 [connection signal="mouse_exited" from="AreaCookie" to="." method="_on_area_cookie_mouse_exited"]
 [connection signal="mouse_entered" from="DraggableArea" to="." method="_on_area_cookie_mouse_entered"]
 [connection signal="mouse_exited" from="DraggableArea" to="." method="_on_area_cookie_mouse_exited"]
-[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
-[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
