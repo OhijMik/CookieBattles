@@ -105,8 +105,12 @@ position = Vector2(8, 1)
 shape = SubResource("CircleShape2D_3dt4d")
 
 [node name="Range" type="Area2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_b8nlu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var damage = 40
+var damage = 50
 var projectile_speed = 600
 var closest_enemy
 

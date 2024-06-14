@@ -57,10 +57,11 @@ func _on_timer_timeout():
 		global.game_state = "prepare"
 		global.round += 1
 		scene_reset()
-		timer.start(5)
+		timer.start(10)
 
 
 func scene_reset():
+	global.gold += 3
 	# Spawns the milk enemies
 	if global.round == 2:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(730, 250), Vector2(1000, 250)]

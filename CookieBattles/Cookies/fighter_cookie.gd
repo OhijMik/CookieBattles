@@ -8,7 +8,7 @@ var initial_hp = float(hp)
 var damage = 34
 
 @onready var anim = get_node("AnimationPlayer")
-@onready var timer = get_node("AttackCooldown")
+@onready var cooldown = get_node("AttackCooldown")
 
 var draggable = false
 var is_inside_dropable = false
@@ -16,6 +16,7 @@ var body_ref
 var prev_body_ref
 var offset : Vector2
 var initial_pos : Vector2
+var milk_in_range = []
 
 var price = 1
 
@@ -53,19 +54,21 @@ func _process(delta):
 
 func _physics_process(_delta):
 	if global.game_state == "battle":
-
-		# if there is no closest enemy
-		if closest_enemy == null:
-			closest_enemy = global.milk_list[0]
-			chase = true
-		
 		# if the enemy is dead
-		if closest_enemy != null and closest_enemy.hp <= 0:
-			global.milk_list.erase(closest_enemy)
-			closest_enemy.queue_free()
+		if closest_enemy == null:
 			if not global.milk_list.is_empty():
 				chase = true
 				closest_enemy = global.milk_list[0]
+		
+		if not milk_in_range.is_empty():
+			chase = false
+			var direction = (closest_enemy.position - position).normalized()
+			look_at(closest_enemy.position)
+			rotate(PI/2)
+			if cooldown.is_stopped():
+				anim.play("Attack")
+				closest_enemy.hp -= damage
+				cooldown.start()
 		
 		# when chasing
 		if chase and closest_enemy != null:
@@ -84,16 +87,15 @@ func _physics_process(_delta):
 func _on_range_body_entered(body):
 	if body in global.milk_list and global.game_state == "battle":
 		chase = false
-		if timer.is_stopped():
-			anim.play("Attack")
-			closest_enemy.hp -= damage
-			timer.start()
+		milk_in_range.append(body)
 
 
 func _on_range_body_exited(body):
-	if body in global.milk_list and global.game_state == "battle":
-		chase = true
-		timer.stop()
+	if "projectile" not in body.name and global.game_state == "battle":
+		milk_in_range.pop_at(0)
+		if milk_in_range.is_empty():
+			chase = true
+			cooldown.stop()
 
 
 func _on_attack_cooldown_timeout():

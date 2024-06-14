@@ -19,5 +19,6 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	sellable = true
-	selling_cookie = body
+	if body in global.cookie_list:
+		sellable = true
+		selling_cookie = body

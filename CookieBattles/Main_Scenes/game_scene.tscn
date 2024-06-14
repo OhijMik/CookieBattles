@@ -19,7 +19,7 @@ offset_top = 928.0
 offset_right = 440.0
 offset_bottom = 984.0
 theme_override_font_sizes/font_size = 30
-text = "Reroll"
+text = "Reroll: 2 gold"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 light_mask = 2

@@ -55,7 +55,12 @@ func _physics_process(_delta):
 			move_and_slide()
 		
 		if hp <= 0:
-			global.gold += 1
+			death()
+
+
+func death():
+	global.milk_list.erase(self)
+	queue_free()
 
 
 func _on_range_body_entered(body):

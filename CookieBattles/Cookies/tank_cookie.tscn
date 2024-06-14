@@ -83,7 +83,7 @@ _data = {
 "RESET": SubResource("Animation_pf1ju")
 }
 
-[node name="Cookie" type="CharacterBody2D"]
+[node name="TankCookie" type="CharacterBody2D"]
 disable_mode = 2
 script = ExtResource("1_e13kg")
 
@@ -106,8 +106,12 @@ shape = SubResource("CircleShape2D_3dt4d")
 
 [node name="Range" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_b8nlu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
