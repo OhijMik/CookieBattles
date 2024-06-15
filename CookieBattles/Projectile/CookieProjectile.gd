@@ -15,11 +15,12 @@ func _process(delta):
 
 
 func _physics_process(_delta):
-	if closest_enemy != null:
-		var direction = (closest_enemy.position - position).normalized()
-		velocity.x = direction.x * projectile_speed
-		velocity.y = direction.y * projectile_speed
-		move_and_slide()
+	if not global.paused:
+		if closest_enemy != null:
+			var direction = (closest_enemy.position - position).normalized()
+			velocity.x = direction.x * projectile_speed
+			velocity.y = direction.y * projectile_speed
+			move_and_slide()
 
 
 func set_enemy(body):

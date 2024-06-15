@@ -55,38 +55,42 @@ func _process(delta):
 
 
 func _physics_process(_delta):
-	if global.game_state == "battle":
-		milk_in_range = get_node("Range").get_overlapping_bodies()
-		
-		closest_enemy = global.milk_list[0]
-		for i in global.milk_list:
-			if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
-				closest_enemy = i
+	if not global.paused:
+		cooldown.set_paused(false)
+		if global.game_state == "battle":
+			milk_in_range = get_node("Range").get_overlapping_bodies()
+			
+			closest_enemy = global.milk_list[0]
+			for i in global.milk_list:
+				if position.distance_to(i.position) <= position.distance_to(closest_enemy.position):
+					closest_enemy = i
 
-		if milk_in_range.is_empty():
-			chase = true
-			cooldown.stop()
-		
-		if not milk_in_range.is_empty():
-			chase = false
-			var direction = (closest_enemy.position - position).normalized()
-			look_at(closest_enemy.position)
-			rotate(PI/2)
-			if cooldown.is_stopped():
-				anim.play("Attack")
-				for milk in milk_in_range:
-					if milk != null:
-						milk.hp -= damage
-				cooldown.start()
-		
-		# when chasing
-		if chase and closest_enemy != null:
-			var direction = (closest_enemy.position - position).normalized()
-			velocity.x = direction.x * speed
-			velocity.y = direction.y * speed
-			look_at(closest_enemy.position)
-			rotate(PI/2)
-			move_and_slide()
+			if milk_in_range.is_empty():
+				chase = true
+				cooldown.stop()
+			
+			if not milk_in_range.is_empty():
+				chase = false
+				var direction = (closest_enemy.position - position).normalized()
+				look_at(closest_enemy.position)
+				rotate(PI/2)
+				if cooldown.is_stopped():
+					anim.play("Attack")
+					for milk in milk_in_range:
+						if milk != null:
+							milk.hp -= damage
+					cooldown.start()
+			
+			# when chasing
+			if chase and closest_enemy != null:
+				var direction = (closest_enemy.position - position).normalized()
+				velocity.x = direction.x * speed
+				velocity.y = direction.y * speed
+				look_at(closest_enemy.position)
+				rotate(PI/2)
+				move_and_slide()
+	else:
+		cooldown.set_paused(true)
 
 
 func _on_attack_cooldown_timeout():
