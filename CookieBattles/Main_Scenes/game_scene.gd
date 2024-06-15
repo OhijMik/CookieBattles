@@ -36,6 +36,24 @@ func _process(delta):
 	if global.milk_list.is_empty() and global.game_state == "battle":
 		global.game_state = "conclusion"
 		timer.start(5)
+	
+	if Input.is_action_just_pressed("pause"):
+		if global.paused:
+			resume()
+		else:
+			pause()
+
+
+func pause():
+	global.paused = true
+	$Pause.show()
+	$Timer/Timer.set_paused(true)
+
+
+func resume():
+	global.paused = false
+	$Pause.hide()
+	$Timer/Timer.set_paused(false)
 
 
 func _on_timer_timeout():
@@ -150,3 +168,11 @@ func _random_shop_generator():
 			var range_cookie_temp = range_cookie_shop_icon.instantiate()
 			range_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(range_cookie_temp)
+
+
+func _on_resume_button_pressed():
+	resume()
+
+
+func _on_main_menu_button_pressed():
+	get_tree().change_scene_to_file("res://Main_Scenes/menu.tscn")

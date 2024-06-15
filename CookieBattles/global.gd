@@ -8,3 +8,5 @@ var milk_list = []
 
 var gold = 100
 var round = 1
+
+var paused = false
