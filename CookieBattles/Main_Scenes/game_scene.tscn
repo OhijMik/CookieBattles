@@ -193,6 +193,49 @@ offset_bottom = 744.0
 theme_override_font_sizes/font_size = 50
 text = "Back to main menu"
 
+[node name="Percentage" type="Node2D" parent="."]
+
+[node name="Bg" type="ColorRect" parent="Percentage"]
+light_mask = 2
+visibility_layer = 2
+offset_top = 808.0
+offset_right = 184.0
+offset_bottom = 1000.0
+mouse_filter = 2
+color = Color(0, 0.305882, 0.305882, 0.882353)
+
+[node name="Common" type="Label" parent="Percentage"]
+offset_left = 64.0
+offset_top = 808.0
+offset_right = 192.0
+offset_bottom = 850.0
+theme_override_font_sizes/font_size = 30
+text = "80%"
+vertical_alignment = 1
+
+[node name="CommonColor" type="ColorRect" parent="Percentage"]
+offset_left = 16.0
+offset_top = 816.0
+offset_right = 48.0
+offset_bottom = 848.0
+color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[node name="Uncommon" type="Label" parent="Percentage"]
+offset_left = 64.0
+offset_top = 856.0
+offset_right = 192.0
+offset_bottom = 898.0
+theme_override_font_sizes/font_size = 30
+text = "20%"
+vertical_alignment = 1
+
+[node name="UncommonColor" type="ColorRect" parent="Percentage"]
+offset_left = 16.0
+offset_top = 864.0
+offset_right = 48.0
+offset_bottom = 896.0
+color = Color(0.235294, 0.823529, 0, 1)
+
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="timeout" from="Timer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Pause/ResumeButton" to="." method="_on_resume_button_pressed"]
