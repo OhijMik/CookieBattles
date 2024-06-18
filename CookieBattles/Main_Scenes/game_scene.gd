@@ -10,11 +10,15 @@ var vampire_cookie_shop_icon = preload("res://Shop_Icons/vampire_cookie_shop_ico
 var puff_cookie_shop_icon = preload("res://Shop_Icons/puff_cookie_shop_icon.tscn")
 var range_cookie_shop_icon = preload("res://Shop_Icons/range_cookie_shop_icon.tscn")
 
+var unit_percentage = [[0,80], [80,100], [0,0], [0,0], [0,0]]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = get_node("Timer/Timer")
 	timer.start()
 	_random_shop_generator()
+	
+	unit_percentage = [[0,80], [80,100], [0,0], [0,0], [0,0]]
 	
 	var milk_pos = [Vector2(430, 250), Vector2(1300, 250)]
 	for i in milk_pos:
@@ -83,6 +87,7 @@ func scene_reset():
 	# Spawns the milk enemies
 	if global.round == 2:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(730, 250), Vector2(1000, 250)]
+		unit_percentage = [[0,60], [60,80], [80,100], [0,0], [0,0]]
 		for i in milk_pos:
 			var milk_temp = milk.instantiate()
 			milk_temp.position = i
@@ -91,6 +96,7 @@ func scene_reset():
 	elif global.round == 3:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(630, 250), 
 						Vector2(1100, 250), Vector2(830, 200), Vector2(900, 200)]
+		unit_percentage = [[0,40], [40,60], [60,80], [80,100], [0,0]]
 		for i in milk_pos:
 			var milk_temp = milk.instantiate()
 			milk_temp.position = i
@@ -100,6 +106,7 @@ func scene_reset():
 	elif global.round == 4:
 		var milk_pos = [Vector2(430, 250), Vector2(1300, 250), Vector2(630, 250), 
 						Vector2(1100, 250), Vector2(830, 200), Vector2(900, 200)]
+		unit_percentage = [[0,20], [40,60], [60,80], [80,90], [90,100]]
 		for i in milk_pos:
 			var milk_temp = milk.instantiate()
 			milk_temp.position = i
@@ -110,6 +117,7 @@ func scene_reset():
 			global.milk_list.append(milk_temp)
 	elif global.round == 5:
 		var milk_pos = [Vector2(900, 200)]
+		unit_percentage = [[0,10], [10,30], [30,60], [60,80], [80,100]]
 		for i in milk_pos:
 			var milk_temp = milk.instantiate()
 			milk_temp.position = i
@@ -147,24 +155,24 @@ func _random_shop_generator():
 	# Spawning the icons
 	for x in range(560, 1233, 168):
 		var rng = RandomNumberGenerator.new()
-		var randInt = rng.randi_range(0, 4)
-		if randInt == 0:
+		var randInt = rng.randi_range(0, 99)
+		if unit_percentage[0][0] <= randInt and randInt < unit_percentage[0][1]:
 			var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
 			fighter_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(fighter_cookie_temp)
-		elif randInt == 1:
+		elif unit_percentage[1][0] <= randInt and randInt  < unit_percentage[1][1]:
 			var tank_cookie_temp = tank_cookie_shop_icon.instantiate()
 			tank_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(tank_cookie_temp)
-		elif randInt == 2:
+		elif unit_percentage[2][0] <= randInt and randInt  < unit_percentage[2][1]:
 			var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
 			vampire_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(vampire_cookie_temp)
-		elif randInt == 3:
+		elif unit_percentage[3][0] <= randInt and randInt  < unit_percentage[3][1]:
 			var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
 			puff_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(puff_cookie_temp)
-		elif randInt == 4:
+		elif unit_percentage[4][0] <= randInt and randInt  < unit_percentage[4][1]:
 			var range_cookie_temp = range_cookie_shop_icon.instantiate()
 			range_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(range_cookie_temp)
