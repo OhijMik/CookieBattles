@@ -33,6 +33,12 @@ func _process(delta):
 	get_node("Gold").text = "Gold: " + str(global.gold)
 	get_node("Round").text = "Round " + str(global.round)
 	
+	$Percentage/Common.text = str(unit_percentage[0][1] - unit_percentage[0][0]) + "%"
+	$Percentage/Uncommon.text = str(unit_percentage[1][1] - unit_percentage[1][0]) + "%"
+	$Percentage/Rare.text = str(unit_percentage[2][1] - unit_percentage[2][0]) + "%"
+	$Percentage/Epic.text = str(unit_percentage[3][1] - unit_percentage[3][0]) + "%"
+	$Percentage/Legendary.text = str(unit_percentage[4][1] - unit_percentage[4][0]) + "%"
+	
 	# Timer
 	if not timer.is_stopped():
 		get_node("Timer/TimerText").text = str(global.game_state) + ": " + str(round(timer.get_time_left()))
@@ -165,17 +171,21 @@ func _random_shop_generator():
 			tank_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(tank_cookie_temp)
 		elif unit_percentage[2][0] <= randInt and randInt  < unit_percentage[2][1]:
-			var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
-			vampire_cookie_temp.position = Vector2(x,912)
-			get_node("Shop").add_child(vampire_cookie_temp)
-		elif unit_percentage[3][0] <= randInt and randInt  < unit_percentage[3][1]:
-			var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
-			puff_cookie_temp.position = Vector2(x,912)
-			get_node("Shop").add_child(puff_cookie_temp)
-		elif unit_percentage[4][0] <= randInt and randInt  < unit_percentage[4][1]:
 			var range_cookie_temp = range_cookie_shop_icon.instantiate()
 			range_cookie_temp.position = Vector2(x,912)
 			get_node("Shop").add_child(range_cookie_temp)
+		elif unit_percentage[3][0] <= randInt and randInt  < unit_percentage[3][1]:
+			var vampire_cookie_temp = vampire_cookie_shop_icon.instantiate()
+			vampire_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(vampire_cookie_temp)
+		elif unit_percentage[4][0] <= randInt and randInt  < unit_percentage[4][1]:
+			var puff_cookie_temp = puff_cookie_shop_icon.instantiate()
+			puff_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(puff_cookie_temp)
+		else:
+			var fighter_cookie_temp = fighter_cookie_shop_icon.instantiate()
+			fighter_cookie_temp.position = Vector2(x,912)
+			get_node("Shop").add_child(fighter_cookie_temp)
 
 
 func _on_resume_button_pressed():
