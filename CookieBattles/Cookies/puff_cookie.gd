@@ -45,8 +45,8 @@ func _process(delta):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and not body_ref.is_occupied:
-				body_ref.is_occupied = true
 				prev_body_ref.is_occupied = false
+				body_ref.is_occupied = true
 				prev_body_ref = body_ref
 				initial_pos = position
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
